@@ -1,0 +1,18 @@
+# Render Blueprint — server Render'da, baza Neon'da (doimiy bepul PostgreSQL).
+# Render: New + → Blueprint → shu repo'ni tanlang. Render DATABASE_URL so'raydi — Neon'dan nusxalab qo'ying.
+services:
+  - type: web
+    name: momin
+    runtime: node
+    plan: free
+    region: frankfurt          # Neon'ni ham Frankfurt (eu-central-1) da oching — tezroq bo'ladi
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health   # bazaga tegmaydi — Neon uxlashiga xalaqit bermaydi
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true        # Render o'zi tasodifiy kalit yaratadi
+      - key: DATABASE_URL
+        sync: false                # Neon'dagi ulanish manzili — o'zingiz kiritasiz

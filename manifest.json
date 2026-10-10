@@ -1,0 +1,24 @@
+{
+  "name": "Mo'min — Kun tartibi",
+  "short_name": "Mo'min",
+  "description": "Kun tartibi, ibodat va ahd — o'zini tarbiyalash ilovasi",
+  "lang": "uz",
+  "start_url": "./?src=pwa",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#060A1C",
+  "theme_color": "#060A1C",
+  "categories": ["lifestyle", "productivity"],
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Tez yozuv", "short_name": "Yozuv", "url": "./?a=qc", "icons": [{ "src": "icon-192.png", "sizes": "192x192" }] },
+    { "name": "Qidiruv", "url": "./?a=search", "icons": [{ "src": "icon-192.png", "sizes": "192x192" }] },
+    { "name": "Fokus rejimi", "short_name": "Fokus", "url": "./?a=focus", "icons": [{ "src": "icon-192.png", "sizes": "192x192" }] },
+    { "name": "Kechki muhosaba", "short_name": "Muhosaba", "url": "./?a=ritual", "icons": [{ "src": "icon-192.png", "sizes": "192x192" }] }
+  ]
+}
