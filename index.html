@@ -2325,9 +2325,7 @@ button{-webkit-tap-highlight-color:transparent}
 .xhero{position:relative;overflow:hidden;border-radius:30px;padding:20px 20px 18px;color:#fff;background:var(--xhero);box-shadow:var(--xhero-sh)}
 .xhero::before{content:"";position:absolute;right:-70px;top:-90px;width:260px;height:260px;border-radius:50%;
   background:radial-gradient(circle,rgba(255,255,255,.26),rgba(255,255,255,0) 68%);pointer-events:none}
-.xhero::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
-  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Cg fill='none' stroke='%23fff' stroke-opacity='.10' stroke-width='1'%3E%3Crect x='20' y='20' width='32' height='32'/%3E%3Crect x='20' y='20' width='32' height='32' transform='rotate(45 36 36)'/%3E%3Ccircle cx='36' cy='36' r='5'/%3E%3C/g%3E%3C/svg%3E");
-  -webkit-mask-image:linear-gradient(115deg,transparent 35%,#000 100%);mask-image:linear-gradient(115deg,transparent 35%,#000 100%)}
+.xhero::after{content:none}
 .xhero>*{position:relative;z-index:1}
 .xhero .xlab{font-size:14px;font-weight:600;opacity:.92;display:flex;align-items:center;gap:8px}
 .xhero .xbig{font-family:var(--xdisp);font-weight:800;font-size:60px;line-height:1;letter-spacing:-.04em;margin-top:8px;display:flex;align-items:baseline;gap:8px}
@@ -2571,15 +2569,15 @@ html body .sheet .sheet-card{width:min(100%,560px)!important;max-height:92vh!imp
 }
 
 /* hafta */
-.xwk{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
-.xwd{display:flex;flex-direction:column;align-items:center;gap:5px;padding:6px 0 4px;border-radius:16px;color:var(--xink);transition:background .15s}
+.xwk{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:2px}
+.xwd{min-width:0;display:flex;flex-direction:column;align-items:center;gap:5px;padding:6px 0 4px;border-radius:16px;color:var(--xink);transition:background .15s}
 .xwd:active{background:var(--xcard2)}
 .xwd.today{background:var(--xprisoft)}
 .xwd.fut{opacity:.38;pointer-events:none}
 .xwl{font-size:11px;font-weight:700;color:var(--xink3);letter-spacing:.03em}
 .xwd.today .xwl{color:var(--xpri)}
-.xwr{position:relative;width:42px;height:42px;display:inline-flex;align-items:center;justify-content:center}
-.xwr .xring{position:absolute;inset:0}
+.xwr{position:relative;width:min(42px,100%);height:auto;aspect-ratio:1;display:inline-flex;align-items:center;justify-content:center}
+.xwr .xring{position:absolute;inset:0;width:100%;height:100%}
 .xwr b{font-family:var(--xdisp);font-weight:800;font-size:14px;position:relative}
 .xwr.hi .fg{stroke:var(--xok)}
 .xwr.mid .fg{stroke:var(--xpri)}
@@ -3526,9 +3524,7 @@ mark{background:rgba(234,185,95,.34);color:inherit;border-radius:5px;padding:0 2
 .xov-bg{position:fixed;inset:0;pointer-events:none;
   background:radial-gradient(70% 42% at 12% -2%,rgba(22,210,174,.26),transparent 70%),radial-gradient(90% 52% at 88% -8%,rgba(91,124,255,.42),transparent 72%),var(--xbg)}
 html[data-theme="light"] .xov-bg{background:radial-gradient(70% 42% at 12% -2%,rgba(22,210,174,.20),transparent 70%),radial-gradient(90% 52% at 88% -8%,rgba(91,124,255,.28),transparent 72%),var(--xbg)}
-.xov-bg::after{content:"";position:absolute;inset:0;opacity:.5;
-  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Cg fill='none' stroke='%238AA0FF' stroke-opacity='.10' stroke-width='1'%3E%3Crect x='20' y='20' width='32' height='32'/%3E%3Crect x='20' y='20' width='32' height='32' transform='rotate(45 36 36)'/%3E%3Ccircle cx='36' cy='36' r='5'/%3E%3C/g%3E%3C/svg%3E");
-  -webkit-mask-image:linear-gradient(180deg,#000 0,transparent 55%);mask-image:linear-gradient(180deg,#000 0,transparent 55%)}
+.xov-bg::after{content:none}
 .xlogin{z-index:140}.xonb{z-index:150}.xpin{z-index:200}
 .xlogo{display:block}
 
@@ -3661,6 +3657,27 @@ html body #splash[hidden]{display:none}
 .xtour-row>div{display:flex;gap:6px;align-items:center}
 .xtour-skip{padding:8px 10px;font-size:13px;font-weight:700;color:var(--xink3)}
 .xtour-next{padding:10px 18px;border-radius:99px;background:linear-gradient(140deg,var(--xprid),var(--xpri));color:#fff;font-weight:800;font-size:13.5px;box-shadow:0 10px 20px -10px var(--xpri)}
+
+/* ═══ ILOVALARIM (Hisob · Vaqt Banki) ═══ */
+.xapps-w .xsec{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.xapps-w .xlink{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;font-weight:700;color:var(--xpri2);padding:6px 4px}
+.xapps-w .xlink .xi{width:14px;height:14px}
+.xapps{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.xapp{position:relative;display:flex;align-items:center;gap:10px;min-width:0;padding:11px 10px 11px 11px;border-radius:20px;background:var(--xcard);border:1px solid var(--xline);box-shadow:var(--xsh1);color:var(--xink);text-decoration:none;transition:transform .15s}
+.xapp:active{transform:scale(.96)}
+.xapp:focus-visible{outline:2px solid var(--xpri2);outline-offset:2px}
+.xapp .xic{width:40px;height:40px;border-radius:13px}
+.xapp .xic .xi{width:21px;height:21px}
+.xapp-t{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1;padding-right:12px}
+.xapp-t b{font:800 14.5px/1.15 var(--xdisp);letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.xapp-t small{font-size:11px;line-height:1.3;color:var(--xink3);overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.xapp-go{position:absolute;top:9px;right:9px;color:var(--xink3);display:inline-flex}
+.xapp-go .xi{width:14px;height:14px}
+#xapErr.bad{color:var(--xbad)}
+/* Yana: Moliya / Vaqt plitkalari tashqi ilovani ochadi */
+.xhq-app{position:relative;text-decoration:none}
+.xhq-ext{position:absolute;top:12px;right:12px;color:var(--xink3);display:inline-flex}
+.xhq-ext .xi{width:15px;height:15px}
 
 </style>
 
@@ -4501,12 +4518,12 @@ const COMMIT_THEMES = {
   rose:  {a:"#F5BCA8", b:"#F0916B", c:"#B85F42", ring:"#CC6F4E", varname:"--rose"}
 };
 const SECONDARY_COMMITMENTS = [
-  {id:"shakarsiz", date:"2026-08-02", title:'Bugun — "shakarsiz" davrim boshlangan kun', theme:"sage",   icon:"cube"},
-  {id:"noent",     date:"2026-08-09", title:'Bugun — musiqa va entertainmentni rad etish ahdim boshlangan kun', theme:"violet", icon:"note"},
-  {id:"iffat",     date:"2026-08-12", title:"Allohga qasamki, bugun zinoni tark etish ahdim boshlangan kun", theme:"teal", icon:"shield"},
-  {id:"nojunk",    date:"2026-08-15", title:"Bugun — junk food yeyishni to'xtatgan kunim", note:"Fri, chips, qoldiq ovqatlar, fast food va hokazolar", theme:"blue", icon:"burger"},
-  {id:"tilim",     date:"2026-09-05", title:"Bugun — yomon so'zlardan tiyilish ahdim boshlangan kun", theme:"ember", icon:"speech"},
-  {id:"tunggi",    date:"2026-08-22", title:"Bugun — har tunlik tunggi tartibga amal qilish ahdim boshlangan kun", note:"Kiyim yuvish, poyabzal kremlash, dush, moliya/vaqt tahlili, budilnik va uyqu — har kecha.", theme:"rose", icon:"moon"}
+  {id:"shakarsiz", date:"2026-10-16", title:'Bugun — "shakarsiz" davrim boshlangan kun', theme:"sage",   icon:"cube"},
+  {id:"noent",     date:"2026-10-16", title:'Bugun — musiqa va entertainmentni rad etish ahdim boshlangan kun', theme:"violet", icon:"note"},
+  {id:"iffat",     date:"2026-10-16", title:"Allohga qasamki, bugun zinoni tark etish ahdim boshlangan kun", theme:"teal", icon:"shield"},
+  {id:"nojunk",    date:"2026-10-16", title:"Bugun — junk food yeyishni to'xtatgan kunim", note:"Fri, chips, qoldiq ovqatlar, fast food va hokazolar", theme:"blue", icon:"burger"},
+  {id:"tilim",     date:"2026-10-16", title:"Bugun — yomon so'zlardan tiyilish ahdim boshlangan kun", theme:"ember", icon:"speech"},
+  {id:"tunggi",    date:"2026-10-16", title:"Bugun — har tunlik tunggi tartibga amal qilish ahdim boshlangan kun", note:"Kiyim yuvish, poyabzal kremlash, dush, moliya/vaqt tahlili, budilnik va uyqu — har kecha.", theme:"rose", icon:"moon"}
 ];
 function commitSealSVG(cfg){
   const t = COMMIT_THEMES[cfg.theme] || COMMIT_THEMES.sage;
@@ -5932,16 +5949,16 @@ function dayNumber(startISO){
   return Math.floor((n - s)/86400000) + 1;
 }
 /* Ahd sanasi mustahkamlangan — o'zgartirib bo'lmaydi */
-const AHD_DATE = "2026-06-26";
-const AHD_PRETTY = "26.06.2026";
-const AHD_SHORT = "26.06.26";
+const AHD_DATE = "2026-10-16";
+const AHD_PRETTY = "16.10.2026";
+const AHD_SHORT = "16.10.26";
 function ahdInfo(){
   const dn = dayNumber(AHD_DATE);          // boshlangan kunda 1
   if(dn >= 1) return {started:true, n:dn, top:"Mo'minning kuni", sub:AHD_SHORT+" dan beri"};
   return {started:false, n:(1-dn), top:"Ahd boshlanadi", sub:"kun qoldi"};
 }
 /* Qasam sanasi — Allohga qasam ichgan kun, mustahkamlangan, o'zgarmaydi */
-const QASAM_DATE = "2026-07-16";
+const QASAM_DATE = "2026-10-16";
 function qasamInfo(){
   const dn = dayNumber(QASAM_DATE);
   return {n:Math.max(1,dn), started:dn>=1};
@@ -9599,8 +9616,8 @@ const XHUB_AI={go:"ai",t:"AI yordamchi",s:"Ahd yo'lidagi dono hamroh — maslaha
 const XHUB_TOP=[
   {go:"maqsad",t:"Maqsadlar",s:"Kunlik amal — g'isht, maqsad — bino",ic:"target",c:"blue"},
   {go:"kundalik",t:"Kundalik",s:"Har kuni qisqa to'xtab, ichingga qara",ic:"pencil",c:"gold"},
-  {go:"moliya",t:"Moliya",s:"Kirim va chiqim hisobi",ic:"wallet",c:"green"},
-  {go:"vaqt",t:"Vaqt",s:"Vaqt qayerga ketayotganini ko'r",ic:"clock",c:"violet"},
+  {go:"moliya",app:"hisob",t:"Moliya",s:"Hisob ilovasi: kirim, chiqim, qarz",ic:"wallet",c:"green"},
+  {go:"vaqt",app:"vaqt",t:"Vaqt",s:"Vaqt Banki ilovasi",ic:"clock",c:"violet"},
   {go:"tahlil",t:"Tahlillar",s:"Butun yo'l — bir qarashda",ic:"chart",c:"teal"},
   {go:"tarix",t:"Tarix",s:"Har kunlik izingiz",ic:"calendar",c:"rose"}
 ];
@@ -9633,6 +9650,8 @@ function xHubRow(it){
   return `<button class="xrow tapr xhr" data-go="${it.go}" data-q="${escq((it.t+" "+it.s).toLowerCase())}"><span class="xic sm" data-c="${it.c}">${xi(it.ic)}</span><div class="xtx"><div class="xt1">${escd(it.t)}</div><div class="xt2">${escd(it.s)}</div></div><span class="xtr">${xi("chev")}</span></button>`;
 }
 function xHubTile(it){
+  if(it.app&&typeof xAppUrl==="function"){ const u=xAppUrl(it.app);
+    if(u) return `<a class="xhqk xhr xhq-app" href="${escq(u)}" target="_blank" rel="noopener" data-act="xAppOpen" data-id="${it.app}" data-c="${it.c}" data-q="${escq((it.t+" "+it.s+" ilova "+it.app).toLowerCase())}" aria-label="${escq(it.t)}: ilovani ochish"><span class="xic">${xi(it.ic)}</span><b>${escd(it.t)}</b><span class="xhq-ext">${xi("extlink")}</span></a>`; }
   return `<button class="xhqk xhr" data-go="${it.go}" data-c="${it.c}" data-q="${escq((it.t+" "+it.s).toLowerCase())}"><span class="xic">${xi(it.ic)}</span><b>${escd(it.t)}</b></button>`;
 }
 function xProfCard(){
@@ -9794,6 +9813,7 @@ function renderSozlama(){
       ${xSetRow({ic:"user",c:"green",t:"Ahd sherigi",s:S.partner?escd(S.partner.n)+" · "+S.partner.d+"-kun · 🔥"+S.partner.s:"Do'st bilan streak almashing",act:"xPartner"})}
       ${xSetRow({ic:"notes",c:"violet",t:"Kelajakka xat",s:"Bir yildan keyingi o'zingizga",val:escd(let_),act:"xLetter"})}
       ${xSetRow({ic:"sparkle",c:"blue",t:"Ilova bilan tanishuv",s:"Asosiy bo'limlar bo'yicha qisqa tur",act:"tourStart"})}
+      ${xSetRow({ic:"extlink",c:"teal",t:"Bog'langan ilovalar",s:"Moliya → Hisob, Vaqt → Vaqt Banki",act:"xAppsEdit"})}
     </div></section>
 
     <div class="xsec"><h2>Hisob va sinxron</h2></div>
@@ -11520,6 +11540,108 @@ window.addEventListener("load",()=>setTimeout(xDeepLink,1500));
   document.addEventListener("visibilitychange",()=>{ if(!document.hidden) retryNow(); });
   window.addEventListener("online",retryNow);
 })();
+
+/* ═════ ILOVALARIM: boshqa ilovalarni bir tugma bilan ochish (Hisob · Vaqt Banki) ═════
+   Manzillar S.settings.appLinks ichida saqlanadi → bulut orqali boshqa qurilmalarga ham o'tadi. */
+XI.hourglass='<path d="M6.5 3.5h11M6.5 20.5h11"/><path d="M7.5 3.5c0 4.2 4.5 5.6 4.5 8.5s-4.5 4.3-4.5 8.5M16.5 3.5c0 4.2-4.5 5.6-4.5 8.5s4.5 4.3 4.5 8.5"/>';
+XI.extlink='<path d="M14 4.5h5.5V10"/><path d="M19.5 4.5 11 13"/><path d="M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4"/>';
+const XAPPS=[
+  {id:"hisob",name:"Hisob",sub:"Moliya va xarajatlar",ic:"wallet",c:"gold"},
+  {id:"vaqt",name:"Vaqt Banki",sub:"Vaqt nazorati",ic:"hourglass",c:"teal"}
+];
+function xAppNorm(raw){
+  let s=String(raw||"").trim(); if(!s) return "";
+  if(!/^[a-z][a-z0-9+.-]*:/i.test(s)) s="https://"+s;
+  try{ const u=new URL(s); if(u.protocol!=="https:"&&u.protocol!=="http:") return null; if(!u.hostname||u.hostname.indexOf(".")<0&&u.hostname!=="localhost") return null; return u.href; }catch(e){ return null; }
+}
+const XAPP_DEF={hisob:"https://moomin-finance-pro.onrender.com/",vaqt:"https://vaqt-banki.onrender.com/"};
+function xAppUrl(id){ const m=(S.settings&&S.settings.appLinks)||{}; const u=xAppNorm(m[id]); return u||XAPP_DEF[id]||""; }
+function xAppTile(a){
+  const u=xAppUrl(a.id);
+  return `<a class="xapp" data-act="xAppOpen" data-id="${a.id}" data-c="${a.c}" href="${u?escq(u):"#"}"${u?' target="_blank" rel="noopener"':""} aria-label="${escq(a.name)} ilovasini ochish">
+    <span class="xic" data-c="${a.c}">${xi(a.ic)}</span>
+    <span class="xapp-t"><b>${escd(a.name)}</b><small>${u?escd(a.sub):"Manzilni kiriting"}</small></span>
+    <span class="xapp-go">${xi(u?"extlink":"plus")}</span></a>`;
+}
+function xAppsHTML(where){
+  const y=where==="yana";
+  return `<div class="xapps-w"${y?' data-hg="1"':""}>
+    <div class="xsec"><h2>Ilovalarim</h2><button class="xlink" data-act="xAppsEdit">${xi("pencil")} Manzillar</button></div>
+    <div class="xapps${y?" xhr":""}"${y?' data-q="ilovalarim hisob moliya vaqt banki ilova ochish manzil"':""}>${XAPPS.map(xAppTile).join("")}</div></div>`;
+}
+XACT.xAppOpen=(el,e)=>{
+  const id=el.dataset.id, u=xAppUrl(id);
+  if(!u){ if(e) e.preventDefault(); xAppsSheet(id); return; }
+  /* manzil bor: <a target=_blank> o'zi ochadi. Ba'zi o'rnatilgan PWA oynalari yangi oynani bloklaydi — zaxira */
+  if(el.tagName!=="A"){ try{ const w=window.open(u,"_blank","noopener"); if(!w) location.href=u; }catch(_){ location.href=u; } }
+};
+function xAppsSheet(focus){
+  const m=(S.settings&&S.settings.appLinks)||{};
+  xSheet({t:"Ilovalarim",sub:"Tugma bosilganda shu manzil ochiladi",key:"apps",html:
+    XAPPS.map(a=>`<label class="xfld"><input id="xap_${a.id}" value="${escq(m[a.id]||XAPP_DEF[a.id]||"")}" placeholder=" " autocomplete="off" inputmode="url" autocapitalize="off" spellcheck="false"><span>${escd(a.name)} manzili (https://…)</span></label>`).join("")+
+    `<p class="xnote" id="xapErr">Yana bo'limidagi «Moliya» va «Vaqt» tugmalari shu manzillarni ochadi. Bo'sh qoldirsangiz, standart manzil ishlatiladi.</p>`,
+    foot:`<button class="xbtn pri blk" data-act="xAppsSave">Saqlash</button>`,
+    onOpen:()=>{ const f=document.getElementById("xap_"+(focus||"")); if(f) setTimeout(()=>{ try{ f.focus(); }catch(e){} },350); }});
+}
+XACT.xAppsEdit=()=>xAppsSheet();
+document.addEventListener("input",e=>{ const t=e.target; if(t&&t.id&&t.id.indexOf("xap_")===0){ const p=document.getElementById("xapErr"); if(p&&p.classList.contains("bad")){ p.classList.remove("bad"); p.textContent="Ilovani brauzerda ochib, manzil satridagi havolani nusxalang va shu yerga qo'ying."; } } });
+XACT.xAppsSave=()=>{
+  const out={}, bad=[];
+  XAPPS.forEach(a=>{ const el=document.getElementById("xap_"+a.id); const raw=el?el.value:""; const n=xAppNorm(raw); if(n===null){ bad.push(a.name); } else if(n){ out[a.id]=n; } });
+  if(bad.length){ const p=document.getElementById("xapErr"); if(p){ p.classList.add("bad"); p.textContent=bad.join(", ")+": manzil noto'g'ri. U https:// bilan boshlanadigan havola bo'lishi kerak."; } return; }
+  S.settings.appLinks=out; saveSet();
+  xSheetClose(); toast("Saqlandi ✓",1800); xRefresh();
+};
+
+/* ═════ ULASHISH KARTASI (rasm) — yangi uslub: eski oltin naqsh va burchaklar yo'q ═════
+   base.html dagi shareCard() ni almashtiradi (keyin e'lon qilingani ishlaydi). */
+async function shareCard(text, ref){
+  try{
+    const cv=document.createElement("canvas"); if(!cv||!cv.getContext){ toast("Bu qurilmada rasm chizib bo'lmadi"); return false; }
+    const W=1080,H=1350; cv.width=W; cv.height=H; const x=cv.getContext("2d");
+    const t=String(text||"").trim(), ar=(typeof isArabic==="function")&&isArabic(t);
+    try{ if(document.fonts&&document.fonts.load) await Promise.race([Promise.all([document.fonts.load("800 64px Urbanist"),document.fonts.load("600 40px Inter"),ar?document.fonts.load("400 60px Amiri"):0]),new Promise(r=>setTimeout(r,1200))]); }catch(e){}
+    /* fon: to'q ko'k + ikki yumshoq nur */
+    const g=x.createLinearGradient(0,0,0,H); g.addColorStop(0,"#0B1233"); g.addColorStop(1,"#060A1C"); x.fillStyle=g; x.fillRect(0,0,W,H);
+    const glow=(cx,cy,r,c)=>{ const rg=x.createRadialGradient(cx,cy,0,cx,cy,r); rg.addColorStop(0,c); rg.addColorStop(1,"rgba(0,0,0,0)"); x.fillStyle=rg; x.fillRect(0,0,W,H); };
+    glow(W*.88,H*.04,620,"rgba(68,103,255,.42)"); glow(W*.06,H*.98,560,"rgba(22,210,174,.16)");
+    /* belgi (logo) */
+    const M=92, mx=96, my=96;
+    const lg=x.createLinearGradient(mx,my,mx+M,my+M); lg.addColorStop(0,"#3550E6"); lg.addColorStop(1,"#16D2AE");
+    x.fillStyle=lg; x.beginPath(); if(x.roundRect) x.roundRect(mx,my,M,M,28); else x.rect(mx,my,M,M); x.fill();
+    x.save(); x.translate(mx,my); x.scale(M/64,M/64); x.fillStyle="#fff";
+    x.fill(new Path2D("M41.6 20.8a14.4 14.4 0 1 0 0 22.4 11.84 11.84 0 1 1 0-22.4Z")); x.beginPath(); x.arc(46.6,21.6,2.8,0,Math.PI*2); x.fill(); x.restore();
+    x.fillStyle="#F3F5FF"; x.textAlign="left"; x.textBaseline="middle"; x.font="800 44px Urbanist, Inter, system-ui, sans-serif"; x.fillText("Mo'min",mx+M+26,my+M/2-12);
+    x.fillStyle="#6F79A8"; x.font="600 26px Inter, system-ui, sans-serif"; x.fillText("Kun tartibi",mx+M+26,my+M/2+26);
+    /* iqtibos belgisi */
+    x.textBaseline="alphabetic";
+    const qg=x.createLinearGradient(96,330,260,470); qg.addColorStop(0,"#5B7CFF"); qg.addColorStop(1,"#16D2AE");
+    x.fillStyle=qg; x.font="800 220px Urbanist, Georgia, serif"; x.textAlign="left"; x.fillText("“",84,470);
+    /* matn */
+    const size=t.length>260?40:t.length>160?48:t.length>80?58:68;
+    x.font=ar?(size+6)+"px Amiri, serif":"700 "+size+"px Urbanist, Inter, system-ui, sans-serif";
+    try{ x.direction=ar?"rtl":"ltr"; }catch(e){}
+    x.textAlign=ar?"right":"left"; const X0=ar?W-96:96;
+    const maxW=W-192, lines=[]; let line="";
+    for(const w of t.split(/\s+/)){ const tst=line?line+" "+w:w; if(x.measureText(tst).width>maxW&&line){ lines.push(line); line=w; } else line=tst; }
+    if(line) lines.push(line);
+    const shown=lines.slice(0,11), lh=size*1.32;
+    let y=Math.max(560, Math.min(H/2+40-(shown.length-1)*lh/2, 640));
+    x.fillStyle="#F3F5FF"; shown.forEach(L=>{ x.fillText(L,X0,y); y+=lh; });
+    try{ x.direction="ltr"; }catch(e){}
+    if(ref){ x.textAlign="left"; x.fillStyle="#34D1E0"; x.font="600 32px Inter, system-ui, sans-serif"; x.fillRect(96,Math.min(H-230,y+28)-11,44,4); x.fillText(String(ref),156,Math.min(H-230,y+28)); }
+    /* pastki chiziq */
+    x.fillStyle="rgba(138,160,255,.18)"; x.fillRect(96,H-150,W-192,2);
+    x.textAlign="left"; x.fillStyle="#6F79A8"; x.font="600 26px Inter, system-ui, sans-serif"; x.fillText("Normo'mindan — Mo'minga",96,H-96);
+    x.textAlign="right"; x.fillText(typeof todayKey==="function"?todayKey():"",W-96,H-96);
+    const blob=await new Promise(res=>{ try{ cv.toBlob(res,"image/png"); }catch(e){ res(null); } });
+    if(!blob){ toast("Rasm hosil bo'lmadi"); return false; }
+    const file=new File([blob],"momin-karta.png",{type:"image/png"});
+    if(navigator.share&&navigator.canShare&&navigator.canShare({files:[file]})){ await navigator.share({files:[file],title:"Mo'min"}); }
+    else{ const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download="momin-karta.png"; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>{ try{ URL.revokeObjectURL(a.href); }catch(e){} },4000); }
+    toast("Karta tayyor ✓"); return true;
+  }catch(e){ if(e&&e.name==="AbortError") return false; try{ toast("Ulashib bo'lmadi"); }catch(_){} return false; }
+}
 
 /* ═══ BOOT yordamchilari ═══ */
 function xBoot(){
