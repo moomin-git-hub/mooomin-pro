@@ -3679,6 +3679,61 @@ html body #splash[hidden]{display:none}
 .xhq-ext{position:absolute;top:12px;right:12px;color:var(--xink3);display:inline-flex}
 .xhq-ext .xi{width:15px;height:15px}
 
+/* ═══ SERVER VA BAZA ═══ */
+.xst .xch{margin-bottom:6px}
+.xst-m{display:flex;flex-direction:column;gap:7px;padding:12px 0;border-bottom:1px solid var(--xline2)}
+.xst-mh{display:flex;align-items:baseline;justify-content:space-between;gap:10px;font-size:13.5px;font-weight:700;color:var(--xink2)}
+.xst-mh b{font:800 16px var(--xdisp);color:var(--xink);font-variant-numeric:tabular-nums;white-space:nowrap}
+.xst-mh b i{font-style:normal;font-weight:700;font-size:12.5px;color:var(--xink3)}
+.xst-bar{height:9px;border-radius:9px;background:var(--xcard3);overflow:hidden}
+.xst-bar i{display:block;height:100%;min-width:3px;border-radius:9px;background:var(--xok);transition:width .4s}
+.xst-bar[data-t=warn] i{background:var(--xwarn)} .xst-bar[data-t=bad] i{background:var(--xbad)}
+.xst-ms{display:flex;justify-content:space-between;gap:10px;font-size:12px;color:var(--xink3);font-variant-numeric:tabular-nums}
+.xst-n{margin:2px 0 0;font-size:12px;line-height:1.45;color:var(--xink3)}
+.xst-kv{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:10px 0;border-bottom:1px solid var(--xline2);font-size:13.5px;color:var(--xink2)}
+.xst-kv:last-child{border-bottom:0}
+.xst-kv b{color:var(--xink);font-weight:700;text-align:right;font-variant-numeric:tabular-nums;min-width:0;overflow-wrap:anywhere}
+.xst-load{display:flex;align-items:center;gap:10px;justify-content:center;padding:40px 10px;color:var(--xink2);font-size:14px}
+.xspin{width:18px;height:18px;border-radius:50%;border:2.5px solid var(--xline);border-top-color:var(--xpri);animation:xspin .8s linear infinite!important}
+
+/* ═══ MOL-MULK ═══ */
+.xmk-seg{margin-top:2px}
+.xmk-seg button{flex:0 0 auto;padding:9px 14px;font-size:13px}
+.xmk-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (min-width:640px){ .xmk-grid{grid-template-columns:repeat(3,minmax(0,1fr))} }
+.xmk{display:flex;flex-direction:column;gap:0;min-width:0;border-radius:22px;overflow:hidden;background:var(--xcard);border:1px solid var(--xline);box-shadow:var(--xsh1);text-align:left;color:var(--xink);transition:transform .15s}
+.xmk:active{transform:scale(.97)}
+.xmk-ph{--c:var(--xpri);--cb:var(--xprisoft);position:relative;display:flex;align-items:center;justify-content:center;aspect-ratio:1/1;width:100%;background:var(--cb);overflow:hidden}
+.xmk-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.xmk-ph.has .xmk-ic{display:none}
+.xmk-ic{color:var(--c);display:inline-flex}
+.xmk-ic .xi{width:40px;height:40px;stroke-width:1.5}
+.xmk-ph em{position:absolute;right:8px;bottom:8px;font-style:normal;font-size:11px;font-weight:800;padding:3px 8px;border-radius:999px;background:rgba(4,8,26,.62);color:#fff}
+.xmk-t{display:flex;flex-direction:column;gap:3px;padding:10px 12px 12px;min-width:0}
+.xmk-t b{font:800 14.5px/1.2 var(--xdisp);letter-spacing:-.01em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.xmk-t small{font-size:12px;color:var(--xink3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-variant-numeric:tabular-nums}
+/* forma */
+.xmk-phs{display:flex;gap:10px;overflow-x:auto;padding:2px 2px 4px;scrollbar-width:none}
+.xmk-phs::-webkit-scrollbar{display:none}
+.xmk-th,.xmk-addph{position:relative;flex:none;width:84px;height:84px;border-radius:18px;overflow:hidden}
+.xmk-th img{width:100%;height:100%;object-fit:cover;display:block}
+.xmk-th button{position:absolute;top:5px;right:5px;width:26px;height:26px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:rgba(4,8,26,.7);color:#fff}
+.xmk-th button .xi{width:14px;height:14px}
+.xmk-th em{position:absolute;left:5px;bottom:5px;font-style:normal;font-size:10px;font-weight:800;padding:2px 7px;border-radius:999px;background:var(--xpri);color:#fff}
+.xmk-addph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;border:1.5px dashed var(--xpri2);color:var(--xpri2);background:var(--xprisoft);cursor:pointer;font-size:11px;font-weight:700;text-align:center}
+.xmk-addph .xi{width:24px;height:24px}
+.xmk-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.xmk-2 .xfld{min-width:0}
+#mkErr{color:var(--xbad);margin-top:6px}
+/* ko'rish */
+.xmk-gal{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;border-radius:22px;scrollbar-width:none}
+.xmk-gal::-webkit-scrollbar{display:none}
+.xmk-gal img{flex:0 0 100%;width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:22px;scroll-snap-align:center;background:var(--xcard2)}
+.xmk-hint{text-align:center;margin:8px 0 0}
+.xmk-noph{--c:var(--xpri);--cb:var(--xprisoft);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;aspect-ratio:16/9;border-radius:22px;background:var(--cb);color:var(--xink3);font-size:12.5px}
+.xmk-info{margin-top:14px}
+.xmk-note{margin:10px 0 0;font-size:14px;line-height:1.55;color:var(--xink2);white-space:pre-wrap;overflow-wrap:anywhere}
+
 </style>
 
 
@@ -3733,6 +3788,7 @@ html body #splash[hidden]{display:none}
     <section class="view" id="v-tarix"></section>
     <section class="view" id="v-yol"></section>
     <section class="view" id="v-sozlama"></section>
+    <section class="view" id="v-mulk"></section>
   </main>
 </div>
 <span id="navDay" hidden></span><span id="syncBadge" class="sync-badge" hidden></span>
@@ -8404,7 +8460,7 @@ function render(){
   const disp={bugun:renderBugun, tartib:renderTartib, ahd:renderAhd, ibodat:renderIbodat, yana:renderYana,
     hadis:renderHadis, kitob:renderKitob, maqsad:renderMaqsad, ai:renderAI, kundalik:renderKundalik, moliya:renderMoliya, vaqt:renderVaqt, tarix:renderTarix,
     yol:renderYol, sozlama:renderSozlama, tillar:renderTillar, tarixkun:renderTarixKun, sr:renderSR, tahlil:renderTahlil, fiz:renderFiz,
-    iffat:renderIffat, galaba:renderGalaba, yutuq:renderYutuq, orzu:renderOrzu};
+    iffat:renderIffat, galaba:renderGalaba, yutuq:renderYutuq, orzu:renderOrzu, mulk:renderMulk};
   Object.keys(COLL_CFG).forEach(k=>{ disp[k]=()=>renderColl(k); });
   try{ (disp[v]||renderBugun)(); }
   catch(err){
@@ -9622,6 +9678,8 @@ const XHUB_TOP=[
   {go:"tarix",t:"Tarix",s:"Har kunlik izingiz",ic:"calendar",c:"rose"}
 ];
 const XHUB=[
+  {g:"Mening narsalarim",items:[
+    {go:"mulk",t:"Mol-mulk",s:"Telefon, kiyim, buyumlar — rasmi bilan ro'yxat",ic:"box",c:"teal"}]},
   {g:"Mutolaa va ma'rifat",items:[
     {go:"hadis",t:"Hadislar",s:"Yodda saqlamoqchi bo'lgan hadislar",ic:"speech",c:"teal"},
     {go:"kitob",t:"Kitob iqtiboslari",s:"O'qigan kitoblardan saralangan so'zlar",ic:"notes",c:"violet"},
@@ -9814,6 +9872,7 @@ function renderSozlama(){
       ${xSetRow({ic:"notes",c:"violet",t:"Kelajakka xat",s:"Bir yildan keyingi o'zingizga",val:escd(let_),act:"xLetter"})}
       ${xSetRow({ic:"sparkle",c:"blue",t:"Ilova bilan tanishuv",s:"Asosiy bo'limlar bo'yicha qisqa tur",act:"tourStart"})}
       ${xSetRow({ic:"extlink",c:"teal",t:"Bog'langan ilovalar",s:"Moliya → Hisob, Vaqt → Vaqt Banki",act:"xAppsEdit"})}
+      ${xSetRow({ic:"server",c:"blue",t:"Server va baza",s:"Render xotirasi, ish soatlari · Neon hajmi va sarfi",act:"xStats"})}
     </div></section>
 
     <div class="xsec"><h2>Hisob va sinxron</h2></div>
@@ -11642,6 +11701,253 @@ async function shareCard(text, ref){
     toast("Karta tayyor ✓"); return true;
   }catch(e){ if(e&&e.name==="AbortError") return false; try{ toast("Ulashib bo'lmadi"); }catch(_){} return false; }
 }
+
+/* ═════ SOZLAMALAR → SERVER VA BAZA: Render va Neon ko'rsatkichlari ═════ */
+XI.server='<rect x="4" y="4" width="16" height="7" rx="2.2"/><rect x="4" y="13" width="16" height="7" rx="2.2"/><path d="M8 7.5h.01M8 16.5h.01M12 7.5h5M12 16.5h5"/>';
+XI.db='<ellipse cx="12" cy="6" rx="7.5" ry="2.8"/><path d="M4.5 6v12c0 1.6 3.4 2.8 7.5 2.8s7.5-1.2 7.5-2.8V6"/><path d="M4.5 12c0 1.6 3.4 2.8 7.5 2.8s7.5-1.2 7.5-2.8"/>';
+function xBytes(n){ n=Number(n)||0; const u=["B","KB","MB","GB","TB"]; let i=0; while(n>=1024&&i<u.length-1){ n/=1024; i++; } return (i===0?n:n<10?n.toFixed(2):n<100?n.toFixed(1):Math.round(n))+" "+u[i]; }
+function xHrs(sec){ const h=(Number(sec)||0)/3600; return h<10?h.toFixed(2):h<100?h.toFixed(1):String(Math.round(h)); }
+function xDur(sec){ sec=Math.round(Number(sec)||0); const d=Math.floor(sec/86400), h=Math.floor(sec%86400/3600), m=Math.floor(sec%3600/60); return d?d+" kun "+h+" soat":h?h+" soat "+m+" daq":m+" daqiqa"; }
+function xMeter(o){
+  const pct=o.max>0?Math.max(0,Math.min(100,o.used/o.max*100)):0, tone=pct>=90?"bad":pct>=70?"warn":"ok";
+  const left=o.max>0?Math.max(0,o.max-o.used):null;
+  return `<div class="xst-m"><div class="xst-mh"><span>${o.t}</span><b>${o.fmt(o.used)}<i> / ${o.fmt(o.max)}</i></b></div>
+    <div class="xst-bar" data-t="${tone}"><i style="width:${pct.toFixed(1)}%"></i></div>
+    <div class="xst-ms"><span>${pct<1&&o.used>0?"<1":Math.round(pct)}% ishlatildi</span>${left!=null?`<span>${o.fmt(left)} qoldi</span>`:""}</div>${o.note?`<p class="xst-n">${o.note}</p>`:""}</div>`;
+}
+const xKV=(k,v)=>`<div class="xst-kv"><span>${k}</span><b>${v}</b></div>`;
+function xStatsHTML(d){
+  if(!d) return `<div class="xst-load"><span class="xspin"></span> Serverdan olinmoqda… (uxlab yotgan bo'lsa ~1 daqiqa)</div>`;
+  if(d.err) return `<div class="xempty"><span class="xic lg" data-c="rose">${xi("cloud")}</span><b>Olib bo'lmadi</b><p>${escd(d.err)}</p><button class="xbtn sm" data-act="xStatsLoad">Qayta urinish</button></div>`;
+  const mine=`<section class="xcard"><div class="xch"><h3>${xi("user")} Mening ma'lumotlarim</h3></div>${xKV("Bulutdagi hajm",xBytes(d.mine.bytes))}${xKV("Yozuvlar soni",d.mine.rows)}</section>`;
+  if(!d.owner) return mine+`<p class="xnote">Server va baza ko'rsatkichlarini faqat ilova egasi ko'radi.</p>`;
+  const r=d.render, b=d.db, n=b.neon||{};
+  const ren=`<section class="xcard xst"><div class="xch"><h3>${xi("server")} Render · server</h3><span class="xchip sm ${r.onRender?"ok":""}">${r.onRender?"ishlayapti":"mahalliy"}</span></div>
+    ${xMeter({t:"Xotira (RAM)",used:r.rss,max:r.memLimit,fmt:xBytes,note:"Bepul reja: 512 MB. Hozir server jarayoni ishlatayotgan qism."})}
+    ${xMeter({t:"Ish soatlari ("+escd(r.month)+")",used:r.monthUpSec/3600,max:r.freeHours,fmt:v=>(+v).toFixed(v<10?2:1)+" soat",note:"Taxminiy: shu server uyg'oq turgan vaqt. 750 soat — barcha bepul xizmatlaringiz uchun umumiy."})}
+    ${xMeter({t:"Chiquvchi trafik ("+escd(r.month)+")",used:r.monthOut,max:r.freeOutBytes,fmt:xBytes})}
+    ${xKV("Protsessor (hozir)",r.cpuPct+"%")}${xKV("Heap (JS xotira)",xBytes(r.heapUsed)+" / "+xBytes(r.heapTotal))}
+    ${xKV("Oxirgi uyg'onishdan beri",xDur(r.uptimeSec))}${xKV("So'rovlar (oy)",r.monthReq.toLocaleString("ru-RU"))}${xKV("Kiruvchi trafik (oy)",xBytes(r.monthIn))}
+    ${xKV("Node.js",escd(r.node))}${r.commit?xKV("Versiya (commit)",escd(r.commit)):""}</section>`;
+  const neon=n.configured&&!n.error?`
+    ${n.computeSec!=null?xMeter({t:"Hisoblash (CU-soat)",used:n.computeSec/3600,max:b.freeComputeHours,fmt:v=>(+v).toFixed(v<10?2:1),note:"Bepul reja: oyiga 100 CU-soat. Baza uxlab yotganda sarflanmaydi."}):""}
+    ${n.storageBytes!=null?xKV("Neon hisobidagi saqlash",xBytes(n.storageBytes)):""}
+    ${n.activeSec!=null?xKV("Faol vaqt (davr)",xHrs(n.activeSec)+" soat"):""}
+    ${n.transferBytes!=null?xKV("Ma'lumot uzatish (davr)",xBytes(n.transferBytes)):""}
+    ${n.writtenBytes!=null?xKV("Yozilgan ma'lumot (davr)",xBytes(n.writtenBytes)):""}
+    ${n.region?xKV("Hudud",escd(n.region)):""}${n.periodStart?xKV("Hisob davri",escd(String(n.periodStart).slice(0,10))+" → "+escd(String(n.periodEnd||"").slice(0,10))):""}`
+    :`<p class="xst-n">${n.error?"Neon API: "+escd(n.error)+".":"Hisoblash soatlari va trafikni ham ko'rish uchun Render → Environment ga <b>NEON_API_KEY</b> va <b>NEON_PROJECT_ID</b> qo'shing."}</p>`;
+  const nb=`<section class="xcard xst"><div class="xch"><h3>${xi("db")} Neon · baza</h3><span class="xchip sm">${b.kind==="postgres"?"PostgreSQL "+escd(String(b.version).split(" ")[0]):"fayl"}</span></div>
+    ${xMeter({t:"Saqlash (baza hajmi)",used:b.sizeBytes,max:b.freeBytes,fmt:xBytes,note:"Bepul reja: 1 GB."})}
+    ${xKV("Ma'lumotlar jadvali",xBytes(b.kvBytes))}${xKV("Foydalanuvchilar jadvali",xBytes(b.usersBytes))}
+    ${xKV("Foydalanuvchilar",b.users)}${xKV("Yozuvlar (jami)",b.rows.toLocaleString("ru-RU"))}
+    ${xKV("Object storage","yoqilmagan · 0 B")}${neon}</section>`;
+  return ren+nb+mine+`<p class="xnote">Yangilangan: ${new Date(d.time).toLocaleTimeString("uz-UZ",{hour:"2-digit",minute:"2-digit"})}</p>`;
+}
+function xStatsSheet(){
+  xSheet({t:"Server va baza",sub:"Render va Neon ko'rsatkichlari",key:"stats",full:true,html:xStatsHTML(XS.stats||null),
+    foot:`<button class="xbtn blk" data-act="xStatsLoad">${xi("refresh")} Yangilash</button>`});
+  xStatsLoad();
+}
+async function xStatsLoad(){
+  if(!(FB.token&&FB.user)){ XS.stats={err:"Ko'rish uchun avval hisobga kiring: Sozlamalar → Hisob va sinxron."}; if(XS.sheetKey==="stats") xSheetBody(xStatsHTML(XS.stats)); return; }
+  if(XS.statsBusy) return; XS.statsBusy=true;
+  if(XS.sheetKey==="stats"&&(!XS.stats||XS.stats.err)) xSheetBody(xStatsHTML(null));
+  try{ XS.stats=await api("GET","/api/stats"); }
+  catch(e){ XS.stats={err:(e&&e.message)||"Server javob bermadi"}; }
+  XS.statsBusy=false;
+  if(XS.sheetKey==="stats") xSheetBody(xStatsHTML(XS.stats));
+}
+XACT.xStats=()=>xStatsSheet();
+XACT.xStatsLoad=()=>xStatsLoad();
+
+/* ═════ MOL-MULK: menda bor narsalar ro'yxati (rasm bilan) ═════
+   Ro'yxat: "momin:mulk" (kichik JSON). Rasmlar: "momin:mulkimg:<id>:<n>" — qurilmada IndexedDB'da
+   (localStorage to'lib qolmasligi uchun), bulutga esa oddiy kalitlar kabi sinxron bo'ladi. */
+XI.phone='<rect x="7" y="2.8" width="10" height="18.4" rx="2.6"/><path d="M11 17.6h2"/>';
+XI.shirt='<path d="M9 3.5 4 6.2l1.8 4.3 2.2-1V20.5h8V9.5l2.2 1L20 6.2 15 3.5c-.4 1.6-1.6 2.6-3 2.6S9.4 5.1 9 3.5Z"/>';
+XI.box='<path d="m12 3 8 4v10l-8 4-8-4V7z"/><path d="m4 7 8 4 8-4M12 11v10"/>';
+XI.doc='<path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/>';
+XI.car='<path d="M5 16.5V12l1.8-4.4A2 2 0 0 1 8.7 6.3h6.6a2 2 0 0 1 1.9 1.3L19 12v4.5"/><path d="M4 12h16v4.5H4z"/><circle cx="7.5" cy="16.8" r="1.6"/><circle cx="16.5" cy="16.8" r="1.6"/>';
+XI.camera='<path d="M4 8.5A2 2 0 0 1 6 6.5h2l1.5-2h5l1.5 2h2a2 2 0 0 1 2 2V18a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><circle cx="12" cy="13" r="3.6"/>';
+XI.bag='<path d="M5.5 8h13l-1 12.5h-11z"/><path d="M9 10V6.5a3 3 0 0 1 6 0V10"/>';
+
+const MULK_CATS=[
+  {id:"texnika",t:"Texnika",ic:"phone",c:"blue"},
+  {id:"kiyim",t:"Kiyim",ic:"shirt",c:"violet"},
+  {id:"oyoq",t:"Poyabzal va aksessuar",ic:"bag",c:"rose"},
+  {id:"uy",t:"Uy buyumlari",ic:"home",c:"amber"},
+  {id:"kitob",t:"Kitoblar",ic:"book",c:"teal"},
+  {id:"transport",t:"Transport",ic:"car",c:"green"},
+  {id:"hujjat",t:"Hujjatlar",ic:"doc",c:"gold"},
+  {id:"boshqa",t:"Boshqa",ic:"box",c:"blue"}
+];
+const MULK_STATE=["Yangi","Yaxshi","O'rtacha","Eskirgan"];
+const MIMG="momin:mulkimg:";
+const mulkCat=id=>MULK_CATS.find(c=>c.id===id)||MULK_CATS[MULK_CATS.length-1];
+
+/* ── rasmlar uchun IndexedDB (Store orqali shaffof) ── */
+const XIDB=(()=>{
+  let dbp=null;
+  const open=()=>dbp||(dbp=new Promise((res,rej)=>{ try{ const r=indexedDB.open("momin-img",1); r.onupgradeneeded=()=>r.result.createObjectStore("kv"); r.onsuccess=()=>res(r.result); r.onerror=()=>rej(r.error); }catch(e){ rej(e); } }));
+  const tx=(mode,fn)=>open().then(db=>new Promise((res,rej)=>{ const t=db.transaction("kv",mode), q=fn(t.objectStore("kv")); t.oncomplete=()=>res(q?q.result:undefined); t.onerror=()=>rej(t.error); t.onabort=()=>rej(t.error); }));
+  return {get:k=>tx("readonly",s=>s.get(k)), set:(k,v)=>tx("readwrite",s=>s.put(v,k)), del:k=>tx("readwrite",s=>s.delete(k)), keys:()=>tx("readonly",s=>s.getAllKeys())};
+})();
+(function(){
+  if(typeof indexedDB==="undefined") return;
+  const o={get:Store.get,set:Store.set,del:Store.del,list:Store.list};
+  const isImg=k=>String(k).indexOf(MIMG)===0;
+  Store.get=async function(k){ if(isImg(k)){ try{ const v=await XIDB.get(k); return v==null?null:v; }catch(e){ return o.get.call(Store,k); } } return o.get.call(Store,k); };
+  Store.set=async function(k,v){
+    if(isImg(k)){ const empty=v==null||v===""; try{ if(empty) await XIDB.del(k); else await XIDB.set(k,v); }catch(e){ if(!empty) return o.set.call(Store,k,v); } try{ fbPush(k,empty?null:v); }catch(e){} return; }
+    return o.set.call(Store,k,v);
+  };
+  Store.del=async function(k){ if(isImg(k)){ try{ await XIDB.del(k); }catch(e){} } return o.del.call(Store,k); };
+  Store.list=async function(p){ const a=await o.list.call(Store,p); p=String(p||"");
+    if(MIMG.indexOf(p)===0||p.indexOf(MIMG)===0){ try{ (await XIDB.keys()).forEach(k=>{ k=String(k); if(k.indexOf(p)===0&&a.indexOf(k)<0) a.push(k); }); }catch(e){} }
+    return a; };
+})();
+
+/* ── ma'lumot ── */
+async function mulkLoad(){ const v=J(await Store.get("momin:mulk")); S.mulk=Array.isArray(v)?v:[]; return S.mulk; }
+function mulkSave(){ return Store.set("momin:mulk",JSON.stringify(S.mulk||[])); }
+const mulkImgKey=(id,n)=>MIMG+id+":"+n;
+const XMIMG=new Map();   /* xotiradagi kesh */
+async function mulkImg(id,n){ const k=mulkImgKey(id,n); if(XMIMG.has(k)) return XMIMG.get(k); const v=await Store.get(k); if(v) XMIMG.set(k,v); return v||""; }
+function mulkFill(root){
+  (root||document).querySelectorAll("img[data-mimg]").forEach(async im=>{
+    if(im.getAttribute("src")) return; const [id,n]=im.getAttribute("data-mimg").split("|");
+    const v=await mulkImg(id,+n||0); if(v){ im.src=v; im.closest(".xmk-ph")&&im.closest(".xmk-ph").classList.add("has"); }
+  });
+}
+/* rasmni kichraytirish: uzun tomoni 1024px, JPEG */
+function mulkShrink(file,max,q){
+  return new Promise((res,rej)=>{
+    if(!file||!/^image\//.test(file.type||"image/")) return rej(new Error("Bu rasm fayli emas"));
+    const url=URL.createObjectURL(file), img=new Image();
+    img.onerror=()=>{ URL.revokeObjectURL(url); rej(new Error("Rasm o'qilmadi")); };
+    img.onload=()=>{ try{
+      const s=Math.min(1,(max||1024)/Math.max(img.width,img.height)), w=Math.max(1,Math.round(img.width*s)), h=Math.max(1,Math.round(img.height*s));
+      const c=document.createElement("canvas"); c.width=w; c.height=h; const g=c.getContext("2d"); g.fillStyle="#fff"; g.fillRect(0,0,w,h); g.drawImage(img,0,0,w,h);
+      URL.revokeObjectURL(url); res(c.toDataURL("image/jpeg",q||0.8)); }catch(e){ URL.revokeObjectURL(url); rej(e); } };
+    img.src=url;
+  });
+}
+
+/* ── sahifa ── */
+XTITLES.mulk="Mol-mulk";
+function renderMulk(){
+  const el=document.getElementById("v-mulk"); if(!el) return;
+  if(!Array.isArray(S.mulk)){ el.innerHTML=`<div class="xpg"><div class="xst-load"><span class="xspin"></span> Yuklanmoqda…</div></div>`; mulkLoad().then(()=>{ if(S.view==="mulk") renderMulk(); }); return; }
+  const all=S.mulk, f=XS.mulkCat||"all", q=String(XS.mulkQ||"").trim().toLowerCase();
+  const list=all.filter(it=>(f==="all"||it.cat===f)&&(!q||(it.name+" "+(it.note||"")+" "+(it.place||"")+" "+mulkCat(it.cat).t).toLowerCase().indexOf(q)>=0))
+               .sort((a,b)=>(b.ts||0)-(a.ts||0));
+  const sum=all.reduce((s,it)=>s+(Number(it.price)||0),0), cats=new Set(all.map(it=>it.cat)).size;
+  const used=MULK_CATS.filter(c=>all.some(it=>it.cat===c.id));
+  const card=it=>{ const c=mulkCat(it.cat);
+    return `<button class="xmk" data-act="mulkOpen" data-id="${escq(it.id)}">
+      <span class="xmk-ph" data-c="${c.c}">${it.imgs?`<img data-mimg="${escq(it.id)}|0" alt="">`:""}<span class="xmk-ic">${xi(c.ic)}</span>${it.imgs>1?`<em>${it.imgs}</em>`:""}</span>
+      <span class="xmk-t"><b>${escd(it.name)}</b><small>${escd(c.t)}${it.price?` · ${xNum(it.price)} so'm`:""}</small></span></button>`; };
+  el.innerHTML=`<div class="xpg">
+    <section class="xhero xteal"><div class="xlab"><span>${xi("box")} Mening narsalarim</span></div>
+      <div class="xbig"><b>${all.length}</b><small>ta narsa</small></div>
+      <div class="xchips"><span class="xchip sm">${xi("wallet")} ${sum?xNum(sum)+" so'm":"qiymat kiritilmagan"}</span><span class="xchip sm">${xi("grid")} ${cats} ta toifa</span></div></section>
+    <button class="xbtn pri blk" data-act="mulkAdd">${xi("camera")} Narsa qo'shish</button>
+    ${all.length?`<label class="xsrch" for="mkQ">${xi("search")}<input id="mkQ" type="search" placeholder="Qidirish: nomi, joyi, izoh" value="${escq(XS.mulkQ||"")}" autocomplete="off" enterkeyhint="search"></label>
+    <div class="xseg xmk-seg"><button class="${f==="all"?"on":""}" data-act="mulkCat" data-c="all">Hammasi · ${all.length}</button>${used.map(c=>`<button class="${f===c.id?"on":""}" data-act="mulkCat" data-c="${c.id}">${escd(c.t)} · ${all.filter(it=>it.cat===c.id).length}</button>`).join("")}</div>`:""}
+    ${list.length?`<div class="xmk-grid">${list.map(card).join("")}</div>`
+      :all.length?xEmptyHTML("search","blue","Topilmadi","Boshqa so'z yoki toifa bilan qidirib ko'ring.")
+      :`<section class="xcard">${xEmptyHTML("camera","teal","Hali hech narsa yo'q","Telefon, kiyim, kitob, hujjat — bor narsalaringizni rasmi bilan yozib qo'ying. Yo'qolsa yoki sotmoqchi bo'lsangiz, hammasi qo'l ostida bo'ladi.",`<button class="xbtn pri sm" data-act="mulkAdd">${xi("plus")} Birinchisini qo'shish</button>`)}</section>`}
+  </div>`;
+  mulkFill(el);
+}
+document.addEventListener("input",e=>{ const t=e.target; if(t&&t.id==="mkQ"){ XS.mulkQ=t.value; clearTimeout(XS.mulkQT); XS.mulkQT=setTimeout(()=>{ const pos=t.selectionStart; renderMulk(); const n=document.getElementById("mkQ"); if(n){ n.focus(); try{ n.setSelectionRange(pos,pos); }catch(_){} } },180); } });
+XACT.mulkCat=el=>{ XS.mulkCat=el.dataset.c; renderMulk(); };
+
+/* ── qo'shish / tahrirlash ── */
+function mulkForm(it){
+  const d=XS.mulkDraft;
+  const ph=d.photos.map((p,i)=>`<span class="xmk-th"><img src="${p}" alt=""><button data-act="mulkPhDel" data-i="${i}" aria-label="Rasmni olib tashlash">${xi("close")}</button>${i===0?"<em>asosiy</em>":""}</span>`).join("");
+  return `<div class="xmk-phs">${ph}${d.photos.length<4?`<label class="xmk-addph" for="mkFile">${xi("camera")}<span>${d.photos.length?"Yana rasm":"Rasm qo'shish"}</span></label>`:""}
+      <input type="file" id="mkFile" accept="image/*" multiple hidden></div>
+    <p class="xnote">4 tagacha rasm. Birinchisi asosiy rasm bo'ladi.</p>
+    <label class="xfld"><input id="mkName" value="${escq(d.name)}" placeholder=" " maxlength="80" autocomplete="off"><span>Nomi * (masalan: iPhone 13, qora kurtka)</span></label>
+    <label class="xfld"><select id="mkCat">${MULK_CATS.map(c=>`<option value="${c.id}"${d.cat===c.id?" selected":""}>${escd(c.t)}</option>`).join("")}</select><span>Toifa</span></label>
+    <div class="xmk-2">
+      <label class="xfld"><input id="mkPrice" value="${d.price?escq(xNum(d.price)):""}" placeholder=" " inputmode="numeric" autocomplete="off"><span>Narxi (so'm)</span></label>
+      <label class="xfld"><input id="mkDate" type="date" value="${escq(d.date||"")}" placeholder=" "><span>Olingan sana</span></label>
+    </div>
+    <label class="xfld"><select id="mkState">${MULK_STATE.map(s=>`<option${d.state===s?" selected":""}>${s}</option>`).join("")}</select><span>Holati</span></label>
+    <label class="xfld"><input id="mkPlace" value="${escq(d.place||"")}" placeholder=" " maxlength="80" autocomplete="off"><span>Qayerda turadi (ixtiyoriy)</span></label>
+    <label class="xfld"><textarea id="mkNote" rows="3" placeholder=" " maxlength="600">${escd(d.note||"")}</textarea><span>Izoh: rang, o'lcham, seriya raqami…</span></label>
+    <p class="xnote bad" id="mkErr" hidden></p>`;
+}
+function mulkReadForm(){
+  const d=XS.mulkDraft, g=id=>document.getElementById(id);
+  if(g("mkName")) d.name=g("mkName").value; if(g("mkCat")) d.cat=g("mkCat").value;
+  if(g("mkPrice")) d.price=Number(String(g("mkPrice").value).replace(/[^\d]/g,""))||0;
+  if(g("mkDate")) d.date=g("mkDate").value; if(g("mkState")) d.state=g("mkState").value;
+  if(g("mkPlace")) d.place=g("mkPlace").value; if(g("mkNote")) d.note=g("mkNote").value;
+}
+async function mulkSheet(id){
+  const it=id?(S.mulk||[]).find(x=>x.id===id):null;
+  const photos=[]; if(it) for(let i=0;i<(it.imgs||0);i++){ const v=await mulkImg(it.id,i); if(v) photos.push(v); }
+  XS.mulkDraft={id:it?it.id:null,name:it?it.name:"",cat:it?it.cat:(XS.mulkCat&&XS.mulkCat!=="all"?XS.mulkCat:"texnika"),price:it?it.price||0:0,date:it?it.date||"":"",state:it?it.state||"Yaxshi":"Yaxshi",place:it?it.place||"":"",note:it?it.note||"":"",photos};
+  xSheet({t:it?"Tahrirlash":"Yangi narsa",sub:it?escd(it.name):"Menda bor narsa",key:"mulkEdit",html:mulkForm(),
+    foot:`<button class="xbtn pri blk" data-act="mulkSave">Saqlash</button>`});
+}
+XACT.mulkAdd=()=>mulkSheet(null);
+XACT.mulkEdit=el=>{ xSheetClose(false,true); setTimeout(()=>mulkSheet(el.dataset.id),320); };
+XACT.mulkPhDel=el=>{ mulkReadForm(); XS.mulkDraft.photos.splice(+el.dataset.i,1); xSheetBody(mulkForm()); };
+document.addEventListener("change",async e=>{
+  const t=e.target; if(!t||t.id!=="mkFile"||!t.files||!t.files.length||!XS.mulkDraft) return;
+  mulkReadForm();
+  const files=[].slice.call(t.files,0,4-XS.mulkDraft.photos.length);
+  toast("Rasm tayyorlanmoqda…",1200);
+  for(const f of files){ try{ XS.mulkDraft.photos.push(await mulkShrink(f,1024,0.8)); }catch(err){ toast(escd(err.message||"Rasm qo'shilmadi")); } }
+  if(XS.sheetKey==="mulkEdit") xSheetBody(mulkForm());
+});
+XACT.mulkSave=async()=>{
+  mulkReadForm(); const d=XS.mulkDraft; if(!d) return;
+  const name=String(d.name||"").trim().slice(0,80);
+  if(!name){ const er=document.getElementById("mkErr"); if(er){ er.hidden=false; er.textContent="Narsaning nomini yozing."; } const n=document.getElementById("mkName"); if(n) n.focus(); return; }
+  if(!Array.isArray(S.mulk)) await mulkLoad();
+  const id=d.id||("m"+Date.now().toString(36)+Math.random().toString(36).slice(2,6));
+  const old=(S.mulk.find(x=>x.id===id)||{});
+  const it={id,name,cat:d.cat,price:d.price||0,date:d.date||"",state:d.state||"",place:String(d.place||"").trim().slice(0,80),note:String(d.note||"").trim().slice(0,600),imgs:d.photos.length,created:old.created||todayKey(),ts:Date.now()};
+  for(let i=0;i<d.photos.length;i++){ const k=mulkImgKey(id,i); if(XMIMG.get(k)!==d.photos[i]){ XMIMG.set(k,d.photos[i]); await Store.set(k,d.photos[i]); } }
+  for(let i=d.photos.length;i<(old.imgs||0);i++){ const k=mulkImgKey(id,i); XMIMG.delete(k); await Store.set(k,null); }
+  const ix=S.mulk.findIndex(x=>x.id===id); if(ix>=0) S.mulk[ix]=it; else S.mulk.push(it);
+  await mulkSave(); XS.mulkDraft=null;
+  xSheetClose(); toast(ix>=0?"Saqlandi ✓":"Qo'shildi ✓",1600); if(S.view==="mulk") renderMulk();
+};
+
+/* ── ko'rish ── */
+XACT.mulkOpen=async el=>{
+  const it=(S.mulk||[]).find(x=>x.id===el.dataset.id); if(!it) return; const c=mulkCat(it.cat);
+  const imgs=[]; for(let i=0;i<(it.imgs||0);i++) imgs.push(`<img data-mimg="${escq(it.id)}|${i}" alt="${escq(it.name)}">`);
+  const row=(k,v)=>v?`<div class="xst-kv"><span>${k}</span><b>${v}</b></div>`:"";
+  xSheet({t:escd(it.name),sub:escd(c.t),key:"mulkView",html:`
+    ${imgs.length?`<div class="xmk-gal">${imgs.join("")}</div>${imgs.length>1?`<p class="xnote xmk-hint">← surib boshqa rasmlarni ko'ring →</p>`:""}`:`<div class="xmk-noph" data-c="${c.c}"><span class="xic lg" data-c="${c.c}">${xi(c.ic)}</span><small>Rasm yo'q — «Tahrirlash» orqali qo'shing</small></div>`}
+    <section class="xcard xmk-info">
+      ${row("Narxi",it.price?xNum(it.price)+" so'm":"")}${row("Olingan sana",it.date?escd(xDateShort(it.date)):"")}${row("Holati",escd(it.state||""))}
+      ${row("Qayerda",escd(it.place||""))}${row("Ro'yxatga olingan",escd(xDateShort(it.created||todayKey())))}
+      ${it.note?`<p class="xmk-note">${escd(it.note)}</p>`:""}
+    </section>`,
+    foot:`<div class="xyn2"><button class="xbtn bad" data-act="mulkDel" data-id="${escq(it.id)}">${xi("trash")} O'chirish</button><button class="xbtn pri" data-act="mulkEdit" data-id="${escq(it.id)}">${xi("pencil")} Tahrirlash</button></div>`,
+    onOpen:root=>mulkFill(root)});
+};
+XACT.mulkDel=el=>{
+  const it=(S.mulk||[]).find(x=>x.id===el.dataset.id); if(!it) return;
+  xSheetClose(false,true);
+  setTimeout(()=>xConfirm({t:"O'chirish",text:"«"+escd(it.name)+"» ro'yxatdan va rasmlari bilan birga o'chiriladi.",ok:"O'chirish",tone:"bad",onOk:async()=>{
+    for(let i=0;i<(it.imgs||0);i++){ const k=mulkImgKey(it.id,i); XMIMG.delete(k); await Store.set(k,null); }
+    S.mulk=S.mulk.filter(x=>x.id!==it.id); await mulkSave(); toast("O'chirildi",1600); if(S.view==="mulk") renderMulk();
+  }}),340);
+};
+/* bulutdan yangi ma'lumot kelganda ro'yxatni qayta o'qish */
+const _mulkLoadAll=loadAll;
+loadAll=async function(){ const r=await _mulkLoadAll.apply(this,arguments); S.mulk=undefined; return r; };
 
 /* ═══ BOOT yordamchilari ═══ */
 function xBoot(){
