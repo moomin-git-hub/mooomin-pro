@@ -4574,12 +4574,12 @@ const COMMIT_THEMES = {
   rose:  {a:"#F5BCA8", b:"#F0916B", c:"#B85F42", ring:"#CC6F4E", varname:"--rose"}
 };
 const SECONDARY_COMMITMENTS = [
-  {id:"shakarsiz", date:"2026-10-16", title:'Bugun — "shakarsiz" davrim boshlangan kun', theme:"sage",   icon:"cube"},
-  {id:"noent",     date:"2026-10-16", title:'Bugun — musiqa va entertainmentni rad etish ahdim boshlangan kun', theme:"violet", icon:"note"},
-  {id:"iffat",     date:"2026-10-16", title:"Allohga qasamki, bugun zinoni tark etish ahdim boshlangan kun", theme:"teal", icon:"shield"},
-  {id:"nojunk",    date:"2026-10-16", title:"Bugun — junk food yeyishni to'xtatgan kunim", note:"Fri, chips, qoldiq ovqatlar, fast food va hokazolar", theme:"blue", icon:"burger"},
-  {id:"tilim",     date:"2026-10-16", title:"Bugun — yomon so'zlardan tiyilish ahdim boshlangan kun", theme:"ember", icon:"speech"},
-  {id:"tunggi",    date:"2026-10-16", title:"Bugun — har tunlik tunggi tartibga amal qilish ahdim boshlangan kun", note:"Kiyim yuvish, poyabzal kremlash, dush, moliya/vaqt tahlili, budilnik va uyqu — har kecha.", theme:"rose", icon:"moon"}
+  {id:"shakarsiz", date:"2026-10-26", title:'Bugun — "shakarsiz" davrim boshlangan kun', theme:"sage",   icon:"cube"},
+  {id:"noent",     date:"2026-10-26", title:'Bugun — musiqa va entertainmentni rad etish ahdim boshlangan kun', theme:"violet", icon:"note"},
+  {id:"iffat",     date:"2026-10-26", title:"Allohga qasamki, bugun zinoni tark etish ahdim boshlangan kun", theme:"teal", icon:"shield"},
+  {id:"nojunk",    date:"2026-10-26", title:"Bugun — junk food yeyishni to'xtatgan kunim", note:"Fri, chips, qoldiq ovqatlar, fast food va hokazolar", theme:"blue", icon:"burger"},
+  {id:"tilim",     date:"2026-10-26", title:"Bugun — yomon so'zlardan tiyilish ahdim boshlangan kun", theme:"ember", icon:"speech"},
+  {id:"tunggi",    date:"2026-10-26", title:"Bugun — har tunlik tunggi tartibga amal qilish ahdim boshlangan kun", note:"Kiyim yuvish, poyabzal kremlash, dush, moliya/vaqt tahlili, budilnik va uyqu — har kecha.", theme:"rose", icon:"moon"}
 ];
 function commitSealSVG(cfg){
   const t = COMMIT_THEMES[cfg.theme] || COMMIT_THEMES.sage;
@@ -6005,16 +6005,16 @@ function dayNumber(startISO){
   return Math.floor((n - s)/86400000) + 1;
 }
 /* Ahd sanasi mustahkamlangan — o'zgartirib bo'lmaydi */
-const AHD_DATE = "2026-10-16";
-const AHD_PRETTY = "16.10.2026";
-const AHD_SHORT = "16.10.26";
+const AHD_DATE = "2026-10-26";
+const AHD_PRETTY = "26.10.2026";
+const AHD_SHORT = "26.10.26";
 function ahdInfo(){
   const dn = dayNumber(AHD_DATE);          // boshlangan kunda 1
   if(dn >= 1) return {started:true, n:dn, top:"Mo'minning kuni", sub:AHD_SHORT+" dan beri"};
   return {started:false, n:(1-dn), top:"Ahd boshlanadi", sub:"kun qoldi"};
 }
 /* Qasam sanasi — Allohga qasam ichgan kun, mustahkamlangan, o'zgarmaydi */
-const QASAM_DATE = "2026-10-16";
+const QASAM_DATE = "2026-10-26";
 function qasamInfo(){
   const dn = dayNumber(QASAM_DATE);
   return {n:Math.max(1,dn), started:dn>=1};
@@ -8553,7 +8553,7 @@ function xMileNext(n){ for(const m of XMILE){ if(m>n) return m; } return null; }
 function xMilePrev(n){ let p=0; for(const m of XMILE){ if(m<=n) p=m; } return p; }
 function xCovList(){
   const out=[]; const q=qasamInfo();
-  out.push({id:"qasam",short:"Qasam",title:"Allohga qasam ichgan kunim",date:QASAM_DATE,n:q.n,started:q.started,left:0,theme:"gold",icon:"qasam",why:XCOV_WHY.qasam});
+  out.push({id:"qasam",short:"Qasam",title:"Allohga qasam ichgan kunim",date:QASAM_DATE,n:q.n,started:q.started,left:q.started?0:Math.max(1,1-dayNumber(QASAM_DATE)),theme:"gold",icon:"qasam",why:XCOV_WHY.qasam});
   SECONDARY_COMMITMENTS.slice().sort((a,b)=>a.date.localeCompare(b.date)).forEach(c=>{
     const dn=dayNumber(c.date);
     out.push({id:c.id,short:XCOV_SHORT[c.id]||c.title,title:c.title,note:c.note,date:c.date,n:Math.max(0,dn),started:dn>=1,left:dn<1?1-dn:0,theme:c.theme,icon:c.icon,cfg:c,why:XCOV_WHY[c.id]||""});
