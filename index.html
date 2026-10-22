@@ -3734,6 +3734,65 @@ html body #splash[hidden]{display:none}
 .xmk-info{margin-top:14px}
 .xmk-note{margin:10px 0 0;font-size:14px;line-height:1.55;color:var(--xink2);white-space:pre-wrap;overflow-wrap:anywhere}
 
+/* ═══ KUTUBXONA 2.0 ═══ */
+.xkb-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 12px}
+.xkb-grid.sm{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media (min-width:640px){ .xkb-grid{grid-template-columns:repeat(3,minmax(0,1fr))} }
+.xkb{display:flex;flex-direction:column;gap:8px;min-width:0;text-align:left;color:var(--xink);transition:transform .15s}
+.xkb:active{transform:scale(.97)}
+.xkb-cv,.xkt-cvb{position:relative;display:block;width:100%;aspect-ratio:2/3;border-radius:14px;overflow:hidden;background:linear-gradient(150deg,var(--xgoldbg),var(--xcard2));border:1px solid var(--xline);box-shadow:0 14px 26px -16px rgba(0,0,12,.7)}
+.xkb-cv img,.xkt-cvb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.xkb-cv.has .xkb-ph,.xkt-cvb.has .xkb-ph{display:none}
+.xkb-ph{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;gap:4px;padding:12px;border-left:6px solid var(--xgold)}
+.xkb-ph b{font:800 15px/1.15 var(--xdisp);color:var(--xink);overflow-wrap:anywhere}
+.xkb-ph small{font-size:11.5px;color:var(--xink3)}
+.xkb-cv em{position:absolute;left:6px;top:6px;font-style:normal;font-size:10px;letter-spacing:1px;padding:2px 6px;border-radius:999px;background:rgba(4,8,26,.66);color:#F7BE55}
+.xkb-t{display:flex;flex-direction:column;gap:3px;min-width:0}
+.xkb-t b{font:800 14px/1.2 var(--xdisp);overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.xkb-t small{font-size:12px;color:var(--xink3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.xkb-t .xl-pill{align-self:flex-start;font-style:normal;margin-top:2px;pointer-events:none}
+/* mualliflar */
+.xka-l{display:flex;flex-direction:column}
+.xka{display:flex;align-items:center;gap:12px;padding:12px 14px;text-align:left;color:var(--xink);border-bottom:1px solid var(--xline2);width:100%}
+.xka:last-child{border-bottom:0}
+.xka-av{position:relative;flex:none;width:48px;height:48px;border-radius:50%;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;background:var(--xgoldbg);color:var(--xgold);font:800 19px var(--xdisp)}
+.xka-av img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.xka-av.has>span{display:none}
+.xka-av.sm{width:28px;height:28px;font-size:13px}
+.xka-av.lg{width:96px;height:96px;font-size:36px;box-shadow:0 0 0 4px var(--xcard),0 0 0 5px var(--xline)}
+.xka-t{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.xka-t b{font:800 15px/1.2 var(--xdisp);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.xka-t small{font-size:12px;color:var(--xink3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.xka-n{flex:none;display:flex;flex-direction:column;align-items:center;font:800 17px var(--xdisp);color:var(--xink)}
+.xka-n small{font-size:10.5px;font-weight:700;color:var(--xink3)}
+.xka-hero{display:flex;align-items:center;gap:16px;margin:4px 0 6px}
+.xka-hero b{display:block;font:800 20px/1.2 var(--xdisp)}
+.xka-hero small{font-size:13px;color:var(--xink3)}
+.xka-mini{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:14px;color:var(--xpri2);padding:4px 0}
+.xka-mini .xi{width:14px;height:14px}
+/* forma */
+.xkt-top,.xkt-avrow{display:flex;gap:12px;align-items:flex-start;margin-bottom:4px}
+.xkt-topf{flex:1;min-width:0;display:flex;flex-direction:column}
+.xkt-cvp{position:relative;flex:none;width:96px;aspect-ratio:2/3;border-radius:12px;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;border:1.5px dashed var(--xpri2);background:var(--xprisoft);color:var(--xpri2);font-size:11px;font-weight:700;text-align:center;cursor:pointer;padding:6px}
+.xkt-avp{position:relative;flex:none;width:84px;height:84px;border-radius:50%;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border:1.5px dashed var(--xpri2);background:var(--xprisoft);color:var(--xpri2);font-size:11px;font-weight:700;cursor:pointer}
+.xkt-cvp.has,.xkt-avp.has{border-style:solid;border-color:var(--xline)}
+.xkt-cvp img,.xkt-avp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.xkt-cvp .xi,.xkt-avp .xi{width:22px;height:22px}
+.xkt-rate{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:6px 4px 12px;font-size:13.5px;font-weight:700;color:var(--xink2)}
+.xkt-rate>div{display:flex;gap:4px}
+.xkt-star{width:36px;height:36px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;color:var(--xink3)}
+.xkt-star .xi{width:24px;height:24px}
+.xkt-star.on{color:var(--xwarn)}
+.xkt-star.on .xi{fill:currentColor}
+#ktErr:not([hidden]),#kaErr:not([hidden]){color:var(--xbad)}
+/* ko'rish */
+.xkt-view{display:flex;gap:16px;align-items:flex-start}
+.xkt-cvb{flex:none;width:118px}
+.xkt-vi{flex:1;min-width:0;display:flex;flex-direction:column;gap:10px}
+.xkt-stars{font-size:18px;letter-spacing:2px;color:var(--xwarn)}
+.xkt-stars i{font-style:normal;color:var(--xcard3)}
+.xkt-vi .xl-sp{display:flex;flex-wrap:wrap;gap:6px}
+
 </style>
 
 
@@ -11796,7 +11855,7 @@ const XIDB=(()=>{
 (function(){
   if(typeof indexedDB==="undefined") return;
   const o={get:Store.get,set:Store.set,del:Store.del,list:Store.list};
-  const isImg=k=>String(k).indexOf(MIMG)===0;
+  const isImg=k=>{ k=String(k); return k.indexOf(MIMG)===0||k.indexOf("momin:img:")===0; };
   Store.get=async function(k){ if(isImg(k)){ try{ const v=await XIDB.get(k); return v==null?null:v; }catch(e){ return o.get.call(Store,k); } } return o.get.call(Store,k); };
   Store.set=async function(k,v){
     if(isImg(k)){ const empty=v==null||v===""; try{ if(empty) await XIDB.del(k); else await XIDB.set(k,v); }catch(e){ if(!empty) return o.set.call(Store,k,v); } try{ fbPush(k,empty?null:v); }catch(e){} return; }
@@ -11804,7 +11863,7 @@ const XIDB=(()=>{
   };
   Store.del=async function(k){ if(isImg(k)){ try{ await XIDB.del(k); }catch(e){} } return o.del.call(Store,k); };
   Store.list=async function(p){ const a=await o.list.call(Store,p); p=String(p||"");
-    if(MIMG.indexOf(p)===0||p.indexOf(MIMG)===0){ try{ (await XIDB.keys()).forEach(k=>{ k=String(k); if(k.indexOf(p)===0&&a.indexOf(k)<0) a.push(k); }); }catch(e){} }
+    if(MIMG.indexOf(p)===0||p.indexOf(MIMG)===0||"momin:img:".indexOf(p)===0||p.indexOf("momin:img:")===0){ try{ (await XIDB.keys()).forEach(k=>{ k=String(k); if(k.indexOf(p)===0&&a.indexOf(k)<0) a.push(k); }); }catch(e){} }
     return a; };
 })();
 
@@ -11948,6 +12007,230 @@ XACT.mulkDel=el=>{
 /* bulutdan yangi ma'lumot kelganda ro'yxatni qayta o'qish */
 const _mulkLoadAll=loadAll;
 loadAll=async function(){ const r=await _mulkLoadAll.apply(this,arguments); S.mulk=undefined; return r; };
+
+/* ═════ KUTUBXONA 2.0: kitoblar (muqova bilan) + mualliflar (rasm va biografiya) ═════
+   Kitoblar: eski joyida — S.coll.kutubxona ("momin:library"), yangi maydonlar qo'shildi (authorId, cover, genre...).
+   Mualliflar: "momin:authors". Rasmlar: "momin:img:book:<id>" va "momin:img:auth:<id>" (qurilmada IndexedDB, bulutga sinxron). */
+XI.feather='<path d="M20 4c-6 0-11 4-12.5 10.5L6 20"/><path d="M20 4c0 7-4.5 11-11 11.5"/><path d="M9.5 15.5 13 12"/>';
+XI.starO='<path d="m12 3.6 2.6 5.3 5.8.8-4.2 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8L3.6 9.7l5.8-.8z"/>';
+const KT_ST=["rejada","sotib olingan","o'qilmoqda","o'qilgan"];
+const KT_STC={"rejada":"mute","sotib olingan":"tone","o'qilmoqda":"warn","o'qilgan":"ok"};
+const ktImgK=(kind,id)=>"momin:img:"+kind+":"+id;
+async function ktImg(kind,id){ const k=ktImgK(kind,id); if(XMIMG.has(k)) return XMIMG.get(k); const v=await Store.get(k); if(v) XMIMG.set(k,v); return v||""; }
+async function ktSetImg(kind,id,v){ const k=ktImgK(kind,id); if(v){ if(XMIMG.get(k)===v) return; XMIMG.set(k,v); } else XMIMG.delete(k); await Store.set(k,v||null); }
+function ktFill(root){
+  (root||document).querySelectorAll("img[data-kimg]").forEach(async im=>{
+    if(im.getAttribute("src")) return; const [kind,id]=im.getAttribute("data-kimg").split("|");
+    const v=await ktImg(kind,id); if(v){ im.src=v; const w=im.closest("[data-ph]"); if(w) w.classList.add("has"); }
+  });
+}
+const ktBooks=()=>(S.coll.kutubxona||(S.coll.kutubxona=[]));
+async function ktLoadAuthors(){ const v=J(await Store.get("momin:authors")); S.authors=Array.isArray(v)?v:[]; return S.authors; }
+const ktSaveAuthors=()=>Store.set("momin:authors",JSON.stringify(S.authors||[]));
+const ktAuthor=id=>(S.authors||[]).find(a=>a.id===id)||null;
+const ktAuthorName=b=>{ const a=b.authorId&&ktAuthor(b.authorId); return a?a.name:(b.author||""); };
+const ktBooksOf=a=>ktBooks().filter(b=>b.authorId===a.id||(!b.authorId&&b.author&&b.author.trim().toLowerCase()===a.name.trim().toLowerCase()));
+const ktId=p=>p+Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+const ktYears=a=>a.born||a.died?(a.born||"?")+(a.died?"–"+a.died:""):"";
+
+/* ── sahifa ── */
+function renderKutub(){
+  const el=document.getElementById("v-kutubxona"); if(!el) return;
+  if(!Array.isArray(S.authors)){ el.innerHTML=`<div class="xpg"><div class="xst-load"><span class="xspin"></span> Yuklanmoqda…</div></div>`; ktLoadAuthors().then(()=>{ if(S.view==="kutubxona") renderKutub(); }); return; }
+  const tab=XS.ktTab||"books", books=ktBooks(), A=S.authors;
+  const chips=KT_ST.map(o=>({o,n:books.filter(b=>(b.status||KT_ST[0])===o).length})).filter(x=>x.n).map(x=>`<span class="xchip sm">${escd(x.o)} · ${x.n}</span>`).join("");
+  el.innerHTML=`<div class="xpg">
+    <section class="xhero xgold"><div class="xlab"><span>${xi("book")} Kutubxonam</span></div>
+      <div class="xbig"><b>${books.length}</b><small>ta kitob · ${A.length} ta muallif</small></div>
+      <div class="xchips">${chips||`<span class="xchip sm">${xi("book")} Ro'yxat bo'sh</span>`}</div></section>
+    <div class="xseg"><button class="${tab==="books"?"on":""}" data-act="ktTab" data-t="books">${xi("book")} Kitoblar · ${books.length}</button><button class="${tab==="authors"?"on":""}" data-act="ktTab" data-t="authors">${xi("feather")} Mualliflar · ${A.length}</button></div>
+    ${tab==="books"?ktBooksHTML():ktAuthorsHTML()}
+  </div>`;
+  ktFill(el);
+}
+function ktBooksHTML(){
+  const books=ktBooks(), f=XS.ktSt||"", q=String(XS.ktQ||"").trim().toLowerCase();
+  const list=books.filter(b=>(!f||(b.status||KT_ST[0])===f)&&(!q||[b.title,ktAuthorName(b),b.genre,b.note,b.publisher].join(" ").toLowerCase().indexOf(q)>=0));
+  const card=b=>{ const st=b.status||KT_ST[0];
+    return `<button class="xkb" data-act="ktBook" data-id="${escq(b.id)}">
+      <span class="xkb-cv" data-ph>${b.cover?`<img data-kimg="book|${escq(b.id)}" alt="">`:""}<span class="xkb-ph"><b>${escd(clip(b.title||"",40))}</b><small>${escd(clip(ktAuthorName(b),28))}</small></span>${b.rating?`<em>${"★".repeat(b.rating)}</em>`:""}</span>
+      <span class="xkb-t"><b>${escd(b.title||"")}</b><small>${escd(ktAuthorName(b)||"Muallif ko'rsatilmagan")}</small><i class="xl-pill on ${KT_STC[st]||""}">${escd(st)}</i></span></button>`; };
+  return `<button class="xbtn pri blk" data-act="ktBookNew">${xi("plus")} Kitob qo'shish</button>
+    ${books.length?`<label class="xsrch" for="ktQ">${xi("search")}<input id="ktQ" type="search" placeholder="Qidirish: nomi, muallif, janr" value="${escq(XS.ktQ||"")}" autocomplete="off" enterkeyhint="search"></label>
+    <div class="xseg flat xl-fl"><button class="${f?"":"on"}" data-act="ktSt" data-v="">Hammasi</button>${KT_ST.map(o=>`<button class="${f===o?"on":""}" data-act="ktSt" data-v="${escq(o)}">${escd(o)}</button>`).join("")}</div>`:""}
+    ${list.length?`<div class="xkb-grid">${list.map(card).join("")}</div>`:`<section class="xcard">${books.length?xEmptyHTML("search","amber","Topilmadi","Boshqa so'z yoki holat bilan qidiring."):xEmptyHTML("book","amber","Hali kitob yo'q","O'qigan, o'qiyotgan va rejadagi kitoblaringizni muqovasi bilan qo'shing.")}</section>`}`;
+}
+function ktAuthorsHTML(){
+  const A=(S.authors||[]).slice().sort((a,b)=>a.name.localeCompare(b.name));
+  const known=new Set(A.map(a=>a.name.trim().toLowerCase()));
+  const loose=[...new Set(ktBooks().filter(b=>!b.authorId&&b.author&&!known.has(b.author.trim().toLowerCase())).map(b=>b.author.trim()))];
+  const row=a=>{ const n=ktBooksOf(a).length;
+    return `<button class="xka" data-act="ktAuthor" data-id="${escq(a.id)}"><span class="xka-av" data-ph>${a.photo?`<img data-kimg="auth|${escq(a.id)}" alt="">`:""}<span>${escd((a.name||"?").trim().charAt(0).toUpperCase())}</span></span>
+      <span class="xka-t"><b>${escd(a.name)}</b><small>${[ktYears(a),a.country].filter(Boolean).map(escd).join(" · ")||"Ma'lumot kiritilmagan"}</small></span><span class="xka-n">${n}<small>kitob</small></span></button>`; };
+  return `<button class="xbtn pri blk" data-act="ktAuthNew">${xi("plus")} Muallif qo'shish</button>
+    ${A.length?`<section class="xcard p0"><div class="xka-l">${A.map(row).join("")}</div></section>`:(loose.length?"":`<section class="xcard">${xEmptyHTML("feather","gold","Hali muallif yo'q","Muallif rasmi va biografiyasini qo'shing. Keyin kitob qo'shayotganda uni ro'yxatdan tanlaysiz.")}</section>`)}
+    ${loose.length?`<div class="xsec"><h2>Kitoblarda uchragan</h2></div><section class="xcard p0"><div class="xka-l">${loose.map(n=>`<div class="xka"><span class="xka-av"><span>${escd(n.charAt(0).toUpperCase())}</span></span><span class="xka-t"><b>${escd(n)}</b><small>Hali muallif sifatida qo'shilmagan</small></span><button class="xbtn sm" data-act="ktAuthFromName" data-n="${escq(n)}">${xi("plus")} Qo'shish</button></div>`).join("")}</div></section>`:""}`;
+}
+XACT.ktTab=el=>{ XS.ktTab=el.dataset.t; renderKutub(); };
+XACT.ktSt=el=>{ XS.ktSt=el.dataset.v; renderKutub(); };
+document.addEventListener("input",e=>{ const t=e.target; if(t&&t.id==="ktQ"){ XS.ktQ=t.value; clearTimeout(XS.ktQT); XS.ktQT=setTimeout(()=>{ const pos=t.selectionStart; renderKutub(); const n=document.getElementById("ktQ"); if(n){ n.focus(); try{ n.setSelectionRange(pos,pos); }catch(_){} } },180); } });
+
+/* ── rasm tanlash (umumiy) ── */
+document.addEventListener("change",async e=>{
+  const t=e.target; if(!t||!t.files||!t.files.length) return;
+  if(t.id==="ktCvFile"&&XS.ktB){ ktReadBook(); try{ XS.ktB.cover=await mulkShrink(t.files[0],900,0.82); }catch(err){ toast(escd(err.message||"Rasm qo'shilmadi")); } if(XS.sheetKey==="ktBookEdit") xSheetBody(ktBookForm()); }
+  if(t.id==="ktAvFile"&&XS.ktA){ ktReadAuth(); try{ XS.ktA.photo=await mulkShrink(t.files[0],700,0.82); }catch(err){ toast(escd(err.message||"Rasm qo'shilmadi")); } if(XS.sheetKey==="ktAuthEdit") xSheetBody(ktAuthForm()); }
+});
+
+/* ── kitob formasi ── */
+function ktBookForm(){
+  const d=XS.ktB, A=(S.authors||[]).slice().sort((a,b)=>a.name.localeCompare(b.name));
+  const opts=`<option value="">— Muallif tanlanmagan —</option>${A.map(a=>`<option value="${escq(a.id)}"${d.authorId===a.id?" selected":""}>${escd(a.name)}</option>`).join("")}${!d.authorId&&d.author?`<option value="__txt" selected>${escd(d.author)} (ro'yxatda yo'q)</option>`:""}<option value="__new">+ Yangi muallif qo'shish…</option>`;
+  const stars=[1,2,3,4,5].map(n=>`<button type="button" class="xkt-star ${d.rating>=n?"on":""}" data-act="ktRate" data-n="${n}" aria-label="${n} yulduz">${xi("starO")}</button>`).join("");
+  return `<div class="xkt-top">
+      <label class="xkt-cvp${d.cover?" has":""}" for="ktCvFile">${d.cover?`<img src="${d.cover}" alt="">`:`${xi("camera")}<span>Muqova rasmi</span>`}</label>
+      <input type="file" id="ktCvFile" accept="image/*" hidden>
+      <div class="xkt-topf">
+        <label class="xfld"><input id="ktTitle" value="${escq(d.title||"")}" placeholder=" " maxlength="120" autocomplete="off"><span>Kitob nomi *</span></label>
+        <label class="xfld"><select id="ktAuth">${opts}</select><span>Muallif</span></label>
+        ${d.cover?`<button class="xlink" data-act="ktCvDel">${xi("trash")} Muqovani olib tashlash</button>`:""}
+      </div></div>
+    <label class="xfld"><select id="ktStatus">${KT_ST.map(o=>`<option${(d.status||KT_ST[0])===o?" selected":""}>${escd(o)}</option>`).join("")}</select><span>Holat</span></label>
+    <div class="xmk-2">
+      <label class="xfld"><input id="ktGenre" value="${escq(d.genre||"")}" placeholder=" " maxlength="40" autocomplete="off" list="ktGenres"><span>Janr</span></label>
+      <label class="xfld"><input id="ktYear" value="${escq(d.year||"")}" placeholder=" " inputmode="numeric" maxlength="4"><span>Nashr yili</span></label>
+      <label class="xfld"><input id="ktPages" value="${escq(d.pages||"")}" placeholder=" " inputmode="numeric" maxlength="5"><span>Sahifalar</span></label>
+      <label class="xfld"><input id="ktLang" value="${escq(d.lang||"")}" placeholder=" " maxlength="30" autocomplete="off"><span>Tili</span></label>
+    </div>
+    <datalist id="ktGenres">${["Badiiy","Diniy","Tarix","Psixologiya","Shaxsiy rivojlanish","Biznes","Ilmiy","Falsafa","She'riyat","Bolalar"].map(g=>`<option value="${g}">`).join("")}</datalist>
+    <label class="xfld"><input id="ktPub" value="${escq(d.publisher||"")}" placeholder=" " maxlength="60" autocomplete="off"><span>Nashriyot</span></label>
+    <div class="xmk-2">
+      <label class="xfld"><input id="ktStart" type="date" value="${escq(d.started||"")}" placeholder=" "><span>Boshlagan sana</span></label>
+      <label class="xfld"><input id="ktEnd" type="date" value="${escq(d.finished||"")}" placeholder=" "><span>Tugatgan sana</span></label>
+    </div>
+    <div class="xkt-rate"><span>Bahoyim</span><div>${stars}</div></div>
+    <label class="xfld"><textarea id="ktNote" rows="3" placeholder=" " maxlength="1500">${escd(d.note||"")}</textarea><span>Kitob haqida: qisqa mazmuni</span></label>
+    <label class="xfld"><textarea id="ktSum" rows="3" placeholder=" " maxlength="2000">${escd(d.summary||"")}</textarea><span>Mening xulosam va o'rganganlarim</span></label>
+    <p class="xnote" id="ktErr" hidden></p>`;
+}
+function ktReadBook(){
+  const d=XS.ktB, g=id=>document.getElementById(id); if(!d||!g("ktTitle")) return;
+  d.title=g("ktTitle").value; const av=g("ktAuth").value;
+  if(av!=="__txt"&&av!=="__new"){ d.authorId=av||""; if(av) d.author=""; }
+  d.status=g("ktStatus").value; d.genre=g("ktGenre").value; d.year=g("ktYear").value.replace(/\D/g,""); d.pages=g("ktPages").value.replace(/\D/g,"");
+  d.lang=g("ktLang").value; d.publisher=g("ktPub").value; d.started=g("ktStart").value; d.finished=g("ktEnd").value; d.note=g("ktNote").value; d.summary=g("ktSum").value;
+}
+async function ktBookSheet(id,keep){
+  if(!Array.isArray(S.authors)) await ktLoadAuthors();
+  if(!keep){ const b=id?ktBooks().find(x=>x.id===id):null;
+    XS.ktB=b?Object.assign({},b,{cover:b.cover?await ktImg("book",b.id):""}):{id:null,title:"",authorId:"",author:"",status:"rejada",rating:0,cover:""}; }
+  const d=XS.ktB;
+  xSheet({t:d.id?"Kitobni tahrirlash":"Yangi kitob",sub:d.id?escd(d.title):"Kutubxonamga",key:"ktBookEdit",html:ktBookForm(),foot:`<button class="xbtn pri blk" data-act="ktBookSave">Saqlash</button>`});
+}
+XACT.ktBookNew=()=>ktBookSheet(null);
+XACT.ktBookEdit=el=>{ xSheetClose(false,true); setTimeout(()=>ktBookSheet(el.dataset.id),320); };
+XACT.ktRate=el=>{ ktReadBook(); const n=+el.dataset.n; XS.ktB.rating=XS.ktB.rating===n?0:n; xSheetBody(ktBookForm()); };
+XACT.ktCvDel=()=>{ ktReadBook(); XS.ktB.cover=""; xSheetBody(ktBookForm()); };
+document.addEventListener("change",e=>{ const t=e.target; if(t&&t.id==="ktAuth"&&t.value==="__new"){ ktReadBook(); XS.ktReturn=true; xSheetClose(false,true); setTimeout(()=>ktAuthSheet(null),320); } });
+XACT.ktBookSave=async()=>{
+  ktReadBook(); const d=XS.ktB; if(!d) return;
+  const title=String(d.title||"").trim().slice(0,120);
+  if(!title){ const er=document.getElementById("ktErr"); if(er){ er.hidden=false; er.textContent="Kitob nomini yozing."; } return; }
+  const books=ktBooks(), id=d.id||ktId("lib"), old=books.find(x=>x.id===id)||{};
+  const a=d.authorId?ktAuthor(d.authorId):null;
+  const it=Object.assign({},old,{id,title,authorId:a?a.id:"",author:a?a.name:String(d.author||"").trim(),status:d.status||KT_ST[0],
+    genre:String(d.genre||"").trim(),year:d.year||"",pages:d.pages||"",lang:String(d.lang||"").trim(),publisher:String(d.publisher||"").trim(),
+    started:d.started||"",finished:d.finished||"",rating:d.rating||0,note:String(d.note||"").trim(),summary:String(d.summary||"").trim(),cover:d.cover?1:0,at:old.at||todayKey()});
+  if(it.status==="o'qilgan"&&!it.finished&&old.status!=="o'qilgan") it.finished=todayKey();
+  await ktSetImg("book",id,d.cover||"");
+  const ix=books.findIndex(x=>x.id===id); if(ix>=0) books[ix]=it; else books.push(it);
+  saveColl("kutubxona"); XS.ktB=null; xSheetClose(); toast(ix>=0?"Saqlandi ✓":"Kitob qo'shildi ✓",1600); XS.ktTab="books"; if(S.view==="kutubxona") renderKutub();
+};
+XACT.ktBook=el=>{
+  const b=ktBooks().find(x=>x.id===el.dataset.id); if(!b) return; const a=b.authorId&&ktAuthor(b.authorId), st=b.status||KT_ST[0];
+  const row=(k,v)=>v?`<div class="xst-kv"><span>${k}</span><b>${v}</b></div>`:"";
+  xSheet({t:escd(b.title),sub:escd(ktAuthorName(b)||""),key:"ktBookView",html:`
+    <div class="xkt-view"><span class="xkt-cvb" data-ph>${b.cover?`<img data-kimg="book|${escq(b.id)}" alt="">`:""}<span class="xkb-ph"><b>${escd(clip(b.title,40))}</b><small>${escd(ktAuthorName(b))}</small></span></span>
+      <div class="xkt-vi">${b.rating?`<div class="xkt-stars">${"★".repeat(b.rating)}<i>${"★".repeat(5-b.rating)}</i></div>`:""}
+        ${a?`<button class="xka-mini" data-act="ktAuthorGo" data-id="${escq(a.id)}"><span class="xka-av sm" data-ph>${a.photo?`<img data-kimg="auth|${escq(a.id)}" alt="">`:""}<span>${escd(a.name.charAt(0))}</span></span>${escd(a.name)} ${xi("chev")}</button>`:(b.author?`<p class="xnote">${escd(b.author)}</p>`:"")}
+        <div class="xl-sp">${KT_ST.map(o=>`<button class="xl-pill ${st===o?"on "+(KT_STC[o]||""):""}" data-act="ktSetSt" data-id="${escq(b.id)}" data-v="${escq(o)}">${escd(o)}</button>`).join("")}</div></div></div>
+    <section class="xcard xmk-info">${row("Janr",escd(b.genre||""))}${row("Nashr yili",escd(b.year||""))}${row("Sahifalar",escd(b.pages||""))}${row("Tili",escd(b.lang||""))}${row("Nashriyot",escd(b.publisher||""))}
+      ${row("Boshlagan",b.started?escd(xDateShort(b.started)):"")}${row("Tugatgan",b.finished?escd(xDateShort(b.finished)):"")}${row("Qo'shilgan",b.at?escd(prettyDK(b.at)):"")}</section>
+    ${b.note?`<div class="xsec"><h2>Kitob haqida</h2></div><section class="xcard"><p class="xmk-note">${escd(b.note)}</p></section>`:""}
+    ${b.summary?`<div class="xsec"><h2>Mening xulosam</h2></div><section class="xcard"><p class="xmk-note">${escd(b.summary)}</p></section>`:""}`,
+    foot:`<div class="xyn2"><button class="xbtn bad" data-act="ktBookDel" data-id="${escq(b.id)}">${xi("trash")} O'chirish</button><button class="xbtn pri" data-act="ktBookEdit" data-id="${escq(b.id)}">${xi("pencil")} Tahrirlash</button></div>`,
+    onOpen:root=>ktFill(root)});
+};
+XACT.ktSetSt=el=>{ const b=ktBooks().find(x=>x.id===el.dataset.id); if(!b) return; b.status=el.dataset.v; if(b.status==="o'qilgan"&&!b.finished) b.finished=todayKey(); saveColl("kutubxona");
+  document.querySelectorAll(`[data-act=ktSetSt][data-id="${CSS.escape(b.id)}"]`).forEach(p=>{ const on=p.dataset.v===b.status; p.className="xl-pill"+(on?" on "+(KT_STC[p.dataset.v]||""):""); }); if(S.view==="kutubxona") renderKutub(); };
+XACT.ktBookDel=el=>{ const b=ktBooks().find(x=>x.id===el.dataset.id); if(!b) return; xSheetClose(false,true);
+  setTimeout(()=>xConfirm({t:"Kitobni o'chirish",text:"«"+escd(b.title)+"» kutubxonadan o'chiriladi.",ok:"O'chirish",tone:"bad",onOk:async()=>{ await ktSetImg("book",b.id,""); S.coll.kutubxona=ktBooks().filter(x=>x.id!==b.id); saveColl("kutubxona"); toast("O'chirildi",1500); if(S.view==="kutubxona") renderKutub(); }}),340); };
+
+/* ── muallif ── */
+function ktAuthForm(){
+  const d=XS.ktA;
+  return `<div class="xkt-avrow"><label class="xkt-avp${d.photo?" has":""}" for="ktAvFile">${d.photo?`<img src="${d.photo}" alt="">`:`${xi("camera")}<span>Rasm</span>`}</label><input type="file" id="ktAvFile" accept="image/*" hidden>
+      <div class="xkt-topf"><label class="xfld"><input id="kaName" value="${escq(d.name||"")}" placeholder=" " maxlength="80" autocomplete="off"><span>Ism-sharifi *</span></label>
+      ${d.photo?`<button class="xlink" data-act="ktAvDel">${xi("trash")} Rasmni olib tashlash</button>`:""}</div></div>
+    <div class="xmk-2">
+      <label class="xfld"><input id="kaBorn" value="${escq(d.born||"")}" placeholder=" " maxlength="12" autocomplete="off"><span>Tug'ilgan yili</span></label>
+      <label class="xfld"><input id="kaDied" value="${escq(d.died||"")}" placeholder=" " maxlength="12" autocomplete="off"><span>Vafot yili (bo'lsa)</span></label>
+    </div>
+    <label class="xfld"><input id="kaCountry" value="${escq(d.country||"")}" placeholder=" " maxlength="40" autocomplete="off"><span>Mamlakati</span></label>
+    <label class="xfld"><textarea id="kaBio" rows="6" placeholder=" " maxlength="5000">${escd(d.bio||"")}</textarea><span>Biografiyasi</span></label>
+    <p class="xnote" id="kaErr" hidden></p>`;
+}
+function ktReadAuth(){ const d=XS.ktA, g=id=>document.getElementById(id); if(!d||!g("kaName")) return;
+  d.name=g("kaName").value; d.born=g("kaBorn").value; d.died=g("kaDied").value; d.country=g("kaCountry").value; d.bio=g("kaBio").value; }
+async function ktAuthSheet(id,name){
+  if(!Array.isArray(S.authors)) await ktLoadAuthors();
+  const a=id?ktAuthor(id):null;
+  XS.ktA=a?Object.assign({},a,{photo:a.photo?await ktImg("auth",a.id):""}):{id:null,name:name||"",photo:""};
+  xSheet({t:a?"Muallifni tahrirlash":"Yangi muallif",sub:a?escd(a.name):"Rasm va biografiya",key:"ktAuthEdit",html:ktAuthForm(),foot:`<button class="xbtn pri blk" data-act="ktAuthSave">Saqlash</button>`,
+    onClose:()=>{ if(XS.ktReturn&&XS.ktB){ XS.ktReturn=false; setTimeout(()=>{ if(!XS.sheetOpen) ktBookSheet(null,true); },340); } }});
+}
+XACT.ktAuthNew=()=>{ XS.ktReturn=false; ktAuthSheet(null); };
+XACT.ktAuthFromName=el=>{ XS.ktReturn=false; ktAuthSheet(null,el.dataset.n); };
+XACT.ktAuthEdit=el=>{ XS.ktReturn=false; xSheetClose(false,true); setTimeout(()=>ktAuthSheet(el.dataset.id),320); };
+XACT.ktAvDel=()=>{ ktReadAuth(); XS.ktA.photo=""; xSheetBody(ktAuthForm()); };
+XACT.ktAuthSave=async()=>{
+  ktReadAuth(); const d=XS.ktA; if(!d) return;
+  const name=String(d.name||"").trim().slice(0,80);
+  if(!name){ const er=document.getElementById("kaErr"); if(er){ er.hidden=false; er.textContent="Muallif ismini yozing."; } return; }
+  const id=d.id||ktId("au"), old=ktAuthor(id)||{};
+  const a=Object.assign({},old,{id,name,born:String(d.born||"").trim(),died:String(d.died||"").trim(),country:String(d.country||"").trim(),bio:String(d.bio||"").trim(),photo:d.photo?1:0,at:old.at||todayKey()});
+  await ktSetImg("auth",id,d.photo||"");
+  const ix=S.authors.findIndex(x=>x.id===id); if(ix>=0) S.authors[ix]=a; else S.authors.push(a);
+  /* nomi bir xil, lekin bog'lanmagan kitoblarni shu muallifga bog'laymiz; nomi o'zgarsa kitoblardagi yozuv ham yangilanadi */
+  let ch=false; ktBooks().forEach(b=>{ if((!b.authorId&&b.author&&b.author.trim().toLowerCase()===name.toLowerCase())||b.authorId===id){ if(b.authorId!==id||b.author!==name){ b.authorId=id; b.author=name; ch=true; } } });
+  if(ch) saveColl("kutubxona");
+  await ktSaveAuthors(); XS.ktA=null;
+  if(XS.ktReturn&&XS.ktB){ XS.ktReturn=false; XS.ktB.authorId=id; XS.ktB.author=""; xSheetClose(false,true); toast("Muallif qo'shildi ✓",1400); setTimeout(()=>ktBookSheet(null,true),320); return; }
+  xSheetClose(); toast(ix>=0?"Saqlandi ✓":"Muallif qo'shildi ✓",1600); XS.ktTab="authors"; if(S.view==="kutubxona") renderKutub();
+};
+function ktAuthorView(id){
+  const a=ktAuthor(id); if(!a) return; const bs=ktBooksOf(a);
+  xSheet({t:escd(a.name),sub:[ktYears(a),a.country].filter(Boolean).map(escd).join(" · ")||"Muallif",key:"ktAuthView",html:`
+    <div class="xka-hero"><span class="xka-av lg" data-ph>${a.photo?`<img data-kimg="auth|${escq(a.id)}" alt="">`:""}<span>${escd(a.name.charAt(0).toUpperCase())}</span></span>
+      <div><b>${escd(a.name)}</b><small>${bs.length} ta kitob kutubxonada</small></div></div>
+    ${a.bio?`<div class="xsec"><h2>Biografiya</h2></div><section class="xcard"><p class="xmk-note">${escd(a.bio)}</p></section>`:`<p class="xnote">Biografiya hali yozilmagan — «Tahrirlash» orqali qo'shing.</p>`}
+    ${bs.length?`<div class="xsec"><h2>Kitoblari</h2></div><div class="xkb-grid sm">${bs.map(b=>`<button class="xkb" data-act="ktBookGo" data-id="${escq(b.id)}"><span class="xkb-cv" data-ph>${b.cover?`<img data-kimg="book|${escq(b.id)}" alt="">`:""}<span class="xkb-ph"><b>${escd(clip(b.title,30))}</b></span></span><span class="xkb-t"><b>${escd(b.title)}</b><small>${escd(b.status||KT_ST[0])}</small></span></button>`).join("")}</div>`:""}`,
+    foot:`<div class="xyn2"><button class="xbtn bad" data-act="ktAuthDel" data-id="${escq(a.id)}">${xi("trash")} O'chirish</button><button class="xbtn pri" data-act="ktAuthEdit" data-id="${escq(a.id)}">${xi("pencil")} Tahrirlash</button></div>`,
+    onOpen:root=>ktFill(root)});
+}
+XACT.ktAuthor=el=>ktAuthorView(el.dataset.id);
+XACT.ktAuthorGo=el=>{ xSheetClose(false,true); setTimeout(()=>ktAuthorView(el.dataset.id),320); };
+XACT.ktBookGo=el=>{ xSheetClose(false,true); setTimeout(()=>XACT.ktBook(el),320); };
+XACT.ktAuthDel=el=>{ const a=ktAuthor(el.dataset.id); if(!a) return; xSheetClose(false,true);
+  setTimeout(()=>xConfirm({t:"Muallifni o'chirish",text:"«"+escd(a.name)+"» mualliflar ro'yxatidan o'chiriladi. Kitoblari o'chmaydi, ularda muallif nomi yozuv bo'lib qoladi.",ok:"O'chirish",tone:"bad",onOk:async()=>{
+    await ktSetImg("auth",a.id,""); ktBooks().forEach(b=>{ if(b.authorId===a.id){ b.authorId=""; b.author=a.name; } }); saveColl("kutubxona");
+    S.authors=S.authors.filter(x=>x.id!==a.id); await ktSaveAuthors(); toast("O'chirildi",1500); if(S.view==="kutubxona") renderKutub(); }}),340); };
+
+/* ── ulash: eski umumiy ro'yxat o'rniga yangi sahifa ── */
+const _ktRenderColl=renderColl;
+renderColl=function(key){ if(key==="kutubxona") return renderKutub(); return _ktRenderColl.apply(this,arguments); };
+const _ktLoadAll=loadAll;
+loadAll=async function(){ const r=await _ktLoadAll.apply(this,arguments); S.authors=undefined; return r; };
 
 /* ═══ BOOT yordamchilari ═══ */
 function xBoot(){
