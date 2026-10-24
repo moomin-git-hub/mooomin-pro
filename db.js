@@ -162,7 +162,13 @@ function createPgStore(env) {
          CREATE TABLE IF NOT EXISTS kv(
            user_id INT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
            k TEXT NOT NULL, v TEXT, updated BIGINT NOT NULL, PRIMARY KEY(user_id,k));
-         CREATE INDEX IF NOT EXISTS kv_upd ON kv(user_id, updated)`),
+         CREATE INDEX IF NOT EXISTS kv_upd ON kv(user_id, updated);
+         CREATE TABLE IF NOT EXISTS meta(k TEXT PRIMARY KEY, n BIGINT NOT NULL DEFAULT 0);
+         CREATE TABLE IF NOT EXISTS img(
+           user_id INT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+           k TEXT NOT NULL, size BIGINT NOT NULL, type TEXT, updated BIGINT NOT NULL, PRIMARY KEY(user_id,k));
+         CREATE TABLE IF NOT EXISTS linkkey(
+           user_id INT PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE, key TEXT UNIQUE NOT NULL, created BIGINT NOT NULL)`),
         { tries: 10, budgetMs, base: 800, what: "ishga tushirish" });
     },
 
@@ -213,6 +219,53 @@ function createPgStore(env) {
     },
 
     async wipe(uid) { await q("DELETE FROM kv WHERE user_id=$1 AND k NOT LIKE '\\_\\_snap:%'", [uid]); },
+
+    // Hisoblagichlar (oylik server ish vaqti, so'rovlar, trafik) — faqat kamdan-kam yoziladi
+    async metaAdd(map) {
+      const ks = Object.keys(map).filter(k => map[k]); if (!ks.length) return;
+      await q(`INSERT INTO meta(k,n) SELECT t.k, t.n FROM UNNEST($1::text[], $2::bigint[]) AS t(k,n)
+               ON CONFLICT(k) DO UPDATE SET n = meta.n + EXCLUDED.n`, [ks, ks.map(k => Math.round(map[k]))]);
+    },
+    async metaGet(prefix) {
+      const r = await q("SELECT k,n FROM meta WHERE k LIKE $1", [prefix.replace(/[%_\\]/g, "\\$&") + "%"]);
+      const o = {}; for (const x of r.rows) o[x.k] = Number(x.n); return o;
+    },
+    // Ilovalarni ulash kaliti (faqat o'qish uchun)
+    async linkGet(uid) { const r = await q("SELECT key FROM linkkey WHERE user_id=$1", [uid]); return r.rows[0] ? r.rows[0].key : null; },
+    async linkSet(uid, key) { await q("INSERT INTO linkkey(user_id,key,created) VALUES($1,$2,$3) ON CONFLICT(user_id) DO UPDATE SET key=EXCLUDED.key, created=EXCLUDED.created", [uid, key, Date.now()]); },
+    async linkFind(key) { const r = await q("SELECT user_id FROM linkkey WHERE key=$1", [key]); return r.rows[0] ? r.rows[0].user_id : null; },
+
+    // Rasmlar (object storage'dagi fayllar ro'yxati)
+    async imgUpsert(uid, k, size, type, ts) {
+      await q(`INSERT INTO img(user_id,k,size,type,updated) VALUES($1,$2,$3,$4,$5)
+               ON CONFLICT(user_id,k) DO UPDATE SET size=EXCLUDED.size, type=EXCLUDED.type, updated=EXCLUDED.updated`, [uid, k, size, type, ts]);
+    },
+    async imgDel(uid, k) { await q("DELETE FROM img WHERE user_id=$1 AND k=$2", [uid, k]); },
+    async imgList(uid) { const r = await q("SELECT k,size,updated FROM img WHERE user_id=$1", [uid]); return r.rows.map(x => ({ k: x.k, size: Number(x.size), updated: Number(x.updated) })); },
+    async imgStats(uid) {
+      const r = (await q(`SELECT coalesce(sum(size),0) AS b, count(*) AS n,
+          coalesce(sum(size) FILTER (WHERE user_id=$1),0) AS mb, count(*) FILTER (WHERE user_id=$1) AS mn FROM img`, [uid])).rows[0];
+      return { bytes: Number(r.b), count: Number(r.n), myBytes: Number(r.mb), myCount: Number(r.mn) };
+    },
+    // Bazada (kv) qolib ketgan eski rasmlar — object storage'ga ko'chirish uchun
+    async kvImgBatch(limit) {
+      const r = await q("SELECT user_id,k,v FROM kv WHERE (k LIKE 'momin:img:%' OR k LIKE 'momin:mulkimg:%') AND k NOT LIKE '\\_\\_snap:%' LIMIT $1", [limit]);
+      return r.rows.map(x => ({ uid: x.user_id, k: x.k, v: x.v }));
+    },
+    async kvImgCount() { const r = await q("SELECT count(*) AS n, coalesce(sum(octet_length(v)),0) AS b FROM kv WHERE k LIKE 'momin:img:%' OR k LIKE 'momin:mulkimg:%'"); return { count: Number(r.rows[0].n), bytes: Number(r.rows[0].b) }; },
+    async kvDel(uid, k) { await q("DELETE FROM kv WHERE user_id=$1 AND k=$2", [uid, k]); },
+
+    async stats(uid) {
+      const r = (await q(`SELECT pg_database_size(current_database()) AS db,
+          pg_total_relation_size('kv') AS kv, pg_total_relation_size('users') AS us,
+          (SELECT count(*) FROM users) AS users, (SELECT count(*) FROM kv) AS rows,
+          (SELECT coalesce(sum(octet_length(v)),0) FROM kv WHERE user_id=$1) AS mine,
+          (SELECT count(*) FROM kv WHERE user_id=$1) AS myrows,
+          (SELECT min(id) FROM users) AS owner, current_setting('server_version') AS ver`, [uid])).rows[0];
+      const N = k => Number(r[k]) || 0;
+      return { dbBytes: N("db"), kvBytes: N("kv"), usersBytes: N("us"), users: N("users"), rows: N("rows"),
+               myBytes: N("mine"), myRows: N("myrows"), ownerId: N("owner"), version: String(r.ver || "") };
+    },
     async deleteUser(uid) { await q("DELETE FROM users WHERE id=$1", [uid]); }
   };
 }
@@ -249,6 +302,26 @@ function createFileStore(env) {
       save();
     },
     async wipe(uid) { const o = D.kv[uid] || {}; for (const k of Object.keys(o)) if (k.indexOf("__snap:") !== 0) delete o[k]; save(); },
+    async linkGet(uid) { return ((D.link || {})[uid]) || null; },
+    async linkSet(uid, key) { (D.link || (D.link = {}))[uid] = key; save(); },
+    async linkFind(key) { for (const [u, k] of Object.entries(D.link || {})) if (k === key) return Number(u); return null; },
+    async imgUpsert(uid, k, size, type, ts) { const m = D.img || (D.img = {}); (m[uid] || (m[uid] = {}))[k] = { size, type, updated: ts }; save(); },
+    async imgDel(uid, k) { const m = (D.img || {})[uid]; if (m) { delete m[k]; save(); } },
+    async imgList(uid) { const m = (D.img || {})[uid] || {}; return Object.keys(m).map(k => ({ k, size: m[k].size, updated: m[k].updated })); },
+    async imgStats(uid) { let bytes = 0, count = 0, myBytes = 0, myCount = 0; for (const [u, m] of Object.entries(D.img || {})) for (const e of Object.values(m)) { bytes += e.size; count++; if (Number(u) === Number(uid)) { myBytes += e.size; myCount++; } } return { bytes, count, myBytes, myCount }; },
+    async kvImgBatch(limit) { const out = []; for (const [u, o] of Object.entries(D.kv)) for (const k of Object.keys(o)) { if (/^momin:(img|mulkimg):/.test(k) && out.length < limit) out.push({ uid: Number(u), k, v: o[k].v }); } return out; },
+    async kvImgCount() { let count = 0, bytes = 0; for (const o of Object.values(D.kv)) for (const [k, e] of Object.entries(o)) if (/^momin:(img|mulkimg):/.test(k)) { count++; bytes += Buffer.byteLength(String(e.v || "")); } return { count, bytes }; },
+    async kvDel(uid, k) { const o = D.kv[uid]; if (o) { delete o[k]; save(); } },
+    async metaAdd(map) { const m = D.meta || (D.meta = {}); for (const k of Object.keys(map)) if (map[k]) m[k] = (m[k] || 0) + Math.round(map[k]); save(); },
+    async metaGet(prefix) { const m = D.meta || {}, o = {}; for (const k of Object.keys(m)) if (k.indexOf(prefix) === 0) o[k] = m[k]; return o; },
+    async stats(uid) {
+      const size = Buffer.byteLength(JSON.stringify(D));
+      const mine = D.kv[uid] || {};
+      return { dbBytes: size, kvBytes: size, usersBytes: 0, users: D.users.length,
+               rows: Object.values(D.kv).reduce((s, o) => s + Object.keys(o).length, 0),
+               myBytes: Object.values(mine).reduce((s, e) => s + Buffer.byteLength(String(e.v || "")), 0), myRows: Object.keys(mine).length,
+               ownerId: D.users.length ? Math.min(...D.users.map(u => u.id)) : 0, version: "data.json" };
+    },
     async deleteUser(uid) { D.users = D.users.filter(u => u.id !== uid); delete D.kv[uid]; save(); }
   };
 }

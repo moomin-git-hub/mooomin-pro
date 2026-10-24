@@ -13,11 +13,12 @@ Telefon / brauzer (PWA)  ──►  Render (Node server, bepul)  ──►  Neon
 | Fayl | Nima uchun |
 |---|---|
 | `index.html` | ilovaning o'zi |
-| `server.js`, `db.js` | server va baza bilan ishlash |
+| `server.js`, `db.js`, `storage.js` | server, baza va rasmlar (object storage) bilan ishlash |
 | `package.json`, `package-lock.json` | kerakli kutubxonalar ro'yxati |
 | `render.yaml` | Render uchun tayyor sozlama |
 | `manifest.json`, `sw.js`, `favicon.svg`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`, `icon-maskable-512.png` | telefonga o'rnatish (PWA), ikonka va oflayn ishlash |
 | `README.md` | shu qo'llanma |
+| `LINK-API.md` | ilovalarni kalit bilan ulash qoidasi (Hisob va Vaqt Banki'ga qo'shish uchun) |
 
 Hammasi **GitHub repo'sining eng yuqori sathida** turishi kerak (hech qanday papka ichida emas).
 
@@ -68,6 +69,24 @@ Ilovada: **Yana → Sozlamalar → Hisob va sinxron → Ro'yxatdan o'tish** (ema
 - **Android (Chrome)**: ⋮ menyu → **Install app** (yoki **Add to Home screen**).
 - **iPhone (Safari)**: **Ulashish** tugmasi → **Add to Home Screen**.
 
+## 6-qadam · Rasmlar uchun Neon object storage (ixtiyoriy, tavsiya etiladi)
+
+Sozlanmasa, rasmlar avvalgidek bazada saqlanadi. Sozlansa, rasmlar alohida fayl ombori (bepul rejada **5 GB**) ga ko'chadi, baza esa yengil qoladi.
+
+1. Neon → loyihangiz → **Object storage** bo'limi → **New bucket** → nom: `momin-images`, access: **private** → **Create**.
+2. Neon → **Connect** → **Storage** yorlig'i → **Parameters only** ni tanlang → **Reveal credential**. To'rtta qiymat chiqadi: `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_ENDPOINT_URL_S3`, `AWS_REGION`.
+3. Render → `momin` → **Environment** → shu to'rttasini va `S3_BUCKET` = `momin-images` ni qo'shing → **Save**.
+4. Render qayta ishga tushgach, eski rasmlar o'zi object storage'ga ko'chadi. Ilovada **Sozlamalar → Server va baza** da «Neon · object storage» bo'limi **ishlayapti** deb, band joy va 5 GB dan qancha qolgani bilan ko'rinadi.
+
+Kalitlarni hech kimga bermang va GitHub'ga yozmang.
+
+## 7-qadam · Ilovalarni kalit bilan ulash
+
+Ilovada: **Sozlamalar → Bog'langan ilovalar**.
+- **Mo'minning ulash kaliti** (`MOMIN-XXXXX-…`): har bir hisobning o'z, takrorlanmas kaliti. Uni **Nusxalash** qilib, Hisob yoki Vaqt Banki'ning shu bo'limiga qo'yasiz. Kalit faqat qisqa xulosani (ahd kuni, bugungi natija, namoz, streak) o'qishga ruxsat beradi.
+- **Ilovalarim**: har bir ilova uchun manzil va o'sha ilovaning kaliti → **Ulash va tekshirish**.
+- Hisob va Vaqt Banki bu kalitni qabul qilishi uchun ularning serveriga `LINK-API.md` dagi 3 ta yo'l qo'shilishi kerak.
+
 ---
 
 ## Muammolar
@@ -79,6 +98,8 @@ Ilovada: **Yana → Sozlamalar → Hisob va sinxron → Ro'yxatdan o'tish** (ema
 | `/api/health/db` → "limit to'lgan" | Neon bepul limiti (oyiga 100 CU-soat yoki 1 GB) tugagan. Keyingi oy boshigacha kuting yoki Neon panelida tekshiring. |
 | Ilovada "☁ ulanmagan", "Server uyg'onmoqda…" | Render yoki Neon uxlab yotgan. 30–60 soniya kuting: ilova o'zi qayta ulanadi. |
 | Sayt ochilganda ilova o'rniga boshqa narsa chiqadi | Fayllar papka ichida qolib ketgan. Hammasi repo'ning eng yuqori sathida bo'lishi kerak (yuqoridagi jadvalga qarang). |
+| Server va baza → object storage: «bucket topilmadi» | Neon → Object storage da xuddi `S3_BUCKET` dagi nom bilan bucket yarating. |
+| Object storage: «Kalitlar noto'g'ri» | Neon → Connect → Storage → **Rotate credentials** qilib, yangi kalitlarni Render'ga qo'ying. |
 | Bazaning SSL sertifikati haqida xato | Render → *Environment* → `PGSSL` = `insecure` qo'shing (faqat Neon bo'lmagan baza uchun kerak bo'lishi mumkin). |
 
 ## Uxlab qolmasligi uchun (ixtiyoriy)
@@ -104,6 +125,12 @@ GitHub'da repo'ni oching → **Add file → Upload files** → yangi fayllarni (
 | `JWT_SECRET` | Kirish tokenlari kaliti: Render yaratadi, o'zgartirmang (o'zgarsa hamma qayta kiradi). |
 | `PGSSL` | Odatda kerak emas. `off`: SSL'siz baza; `insecure`: sertifikatni tekshirmaslik. |
 | `PG_POOL_MAX` | Bazaga ochiq ulanishlar soni (standart 5). |
+| `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_ENDPOINT_URL_S3`, `AWS_REGION` | Neon object storage kalitlari (6-qadam). Bo'lmasa, rasmlar bazada saqlanadi. |
+| `S3_BUCKET` | Bucket nomi (standart: `momin-images`). |
+| `NEON_API_KEY` | Ixtiyoriy. Neon → hisob belgisi → **Account settings → API keys → Create** dan olingan kalit. Qo'shilsa, ilovadagi **Sozlamalar → Server va baza** da Neon hisoblash soatlari (CU-soat) va trafik ham ko'rinadi. |
+| `NEON_PROJECT_ID` | `NEON_API_KEY` bilan birga. Neon → loyiha → **Settings → General → Project ID**. |
+| `ADMIN_EMAILS` | Ixtiyoriy. Server ko'rsatkichlarini kim ko'rishi (vergul bilan). Bo'lmasa — birinchi ro'yxatdan o'tgan hisob. |
+| `MEM_LIMIT_MB` | Ixtiyoriy. Pullik rejaga o'tsangiz, xotira chegarasi (standart: Render'da 512). |
 | `NO_POLL_CACHE` | `1` bo'lsa sinxron so'rovlari har safar bazaga boradi (odatda kerak emas). |
 
 ## Mahalliy ishga tushirish (sinov uchun)

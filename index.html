@@ -3678,6 +3678,16 @@ html body #splash[hidden]{display:none}
 .xhq-app{position:relative;text-decoration:none}
 .xhq-ext{position:absolute;top:12px;right:12px;color:var(--xink3);display:inline-flex}
 .xhq-ext .xi{width:15px;height:15px}
+/* Bog'langan ilovalar: kalit bilan ulash */
+.xlk-own .xnote{margin-bottom:10px}
+.xlk-key{font:700 15px/1.4 ui-monospace,Menlo,Consolas,monospace;letter-spacing:.04em;padding:14px 12px;border-radius:14px;background:var(--xcard2);border:1px dashed var(--xline);color:var(--xink);text-align:center;overflow-wrap:anywhere;user-select:all;-webkit-user-select:all;margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:8px}
+.xlk-rot{display:inline-flex;align-items:center;gap:6px;margin-top:10px;font-size:12.5px;font-weight:700;color:var(--xink3)}
+.xlk-rot .xi{width:14px;height:14px}
+.xlk-app .xch h3{display:flex;align-items:center;gap:8px}
+.xlk-app .xbtn .xspin{width:14px;height:14px}
+.xchip.bad{background:var(--xbadbg);color:var(--xbad)}
+.xchip.warn{background:var(--xwarnbg);color:var(--xwarn)}
+.xnote.bad{color:var(--xbad)}
 
 /* ═══ SERVER VA BAZA ═══ */
 .xst .xch{margin-bottom:6px}
@@ -3695,6 +3705,7 @@ html body #splash[hidden]{display:none}
 .xst-kv b{color:var(--xink);font-weight:700;text-align:right;font-variant-numeric:tabular-nums;min-width:0;overflow-wrap:anywhere}
 .xst-load{display:flex;align-items:center;gap:10px;justify-content:center;padding:40px 10px;color:var(--xink2);font-size:14px}
 .xspin{width:18px;height:18px;border-radius:50%;border:2.5px solid var(--xline);border-top-color:var(--xpri);animation:xspin .8s linear infinite!important}
+.xst-n.bad{color:var(--xbad)}
 
 /* ═══ MOL-MULK ═══ */
 .xmk-seg{margin-top:2px}
@@ -3973,9 +3984,10 @@ async function fbStartSync(){
   try{ res=await fbPull(true); }catch(e){ FB.connected=false; fbSetStatus(e.message); updateSyncBadge(); return; }
   // serverda yo'q mahalliy kalitlarni yuklaymiz
   const localKeys=await Store.list("momin:"); const up={};
-  for(const k of localKeys){ if(!res.remoteKeys.has(k)){ const v=await Store.get(k); if(v!=null) up[k]=v; } }
+  for(const k of localKeys){ if(typeof xIsImgKey==="function"&&xIsImgKey(k)) continue; if(!res.remoteKeys.has(k)){ const v=await Store.get(k); if(v!=null) up[k]=v; } }
   if(Object.keys(up).length){ try{ await api("POST","/api/data",{items:up}); }catch(e){} }
   if(res.changed) await reloadFromLocal();
+  try{ if(typeof xImgSyncAll==="function") xImgSyncAll(res.remoteKeys); }catch(e){}
   clearInterval(FB.timer);
   FB.timer=setInterval(async()=>{ if(document.hidden||!FB.connected) return; try{ await fbFlush(); const x=await fbPull(false); if(x&&x.changed) await reloadFromLocal(); updateSyncBadge(); }catch(e){} },15000);
   S.fbLastSync=Date.now(); fbSetStatus(""); updateSyncBadge();
@@ -9930,7 +9942,7 @@ function renderSozlama(){
       ${xSetRow({ic:"user",c:"green",t:"Ahd sherigi",s:S.partner?escd(S.partner.n)+" · "+S.partner.d+"-kun · 🔥"+S.partner.s:"Do'st bilan streak almashing",act:"xPartner"})}
       ${xSetRow({ic:"notes",c:"violet",t:"Kelajakka xat",s:"Bir yildan keyingi o'zingizga",val:escd(let_),act:"xLetter"})}
       ${xSetRow({ic:"sparkle",c:"blue",t:"Ilova bilan tanishuv",s:"Asosiy bo'limlar bo'yicha qisqa tur",act:"tourStart"})}
-      ${xSetRow({ic:"extlink",c:"teal",t:"Bog'langan ilovalar",s:"Moliya → Hisob, Vaqt → Vaqt Banki",act:"xAppsEdit"})}
+      ${xSetRow({ic:"extlink",c:"teal",t:"Bog'langan ilovalar",s:"Kalit bilan ulash · Hisob, Vaqt Banki",act:"xAppsEdit"})}
       ${xSetRow({ic:"server",c:"blue",t:"Server va baza",s:"Render xotirasi, ish soatlari · Neon hajmi va sarfi",act:"xStats"})}
     </div></section>
 
@@ -11673,7 +11685,8 @@ function xAppNorm(raw){
   try{ const u=new URL(s); if(u.protocol!=="https:"&&u.protocol!=="http:") return null; if(!u.hostname||u.hostname.indexOf(".")<0&&u.hostname!=="localhost") return null; return u.href; }catch(e){ return null; }
 }
 const XAPP_DEF={hisob:"https://moomin-finance-pro.onrender.com/",vaqt:"https://vaqt-banki.onrender.com/"};
-function xAppUrl(id){ const m=(S.settings&&S.settings.appLinks)||{}; const u=xAppNorm(m[id]); return u||XAPP_DEF[id]||""; }
+const xAppRec=id=>{ const m=(S.settings&&S.settings.appLinks)||{}, v=m[id]; return typeof v==="string"?{url:v}:(v||{}); };
+function xAppUrl(id){ const u=xAppNorm(xAppRec(id).url); return u||XAPP_DEF[id]||""; }
 function xAppTile(a){
   const u=xAppUrl(a.id);
   return `<a class="xapp" data-act="xAppOpen" data-id="${a.id}" data-c="${a.c}" href="${u?escq(u):"#"}"${u?' target="_blank" rel="noopener"':""} aria-label="${escq(a.name)} ilovasini ochish">
@@ -11693,23 +11706,96 @@ XACT.xAppOpen=(el,e)=>{
   /* manzil bor: <a target=_blank> o'zi ochadi. Ba'zi o'rnatilgan PWA oynalari yangi oynani bloklaydi — zaxira */
   if(el.tagName!=="A"){ try{ const w=window.open(u,"_blank","noopener"); if(!w) location.href=u; }catch(_){ location.href=u; } }
 };
-function xAppsSheet(focus){
-  const m=(S.settings&&S.settings.appLinks)||{};
-  xSheet({t:"Ilovalarim",sub:"Tugma bosilganda shu manzil ochiladi",key:"apps",html:
-    XAPPS.map(a=>`<label class="xfld"><input id="xap_${a.id}" value="${escq(m[a.id]||XAPP_DEF[a.id]||"")}" placeholder=" " autocomplete="off" inputmode="url" autocapitalize="off" spellcheck="false"><span>${escd(a.name)} manzili (https://…)</span></label>`).join("")+
-    `<p class="xnote" id="xapErr">Yana bo'limidagi «Moliya» va «Vaqt» tugmalari shu manzillarni ochadi. Bo'sh qoldirsangiz, standart manzil ishlatiladi.</p>`,
-    foot:`<button class="xbtn pri blk" data-act="xAppsSave">Saqlash</button>`,
-    onOpen:()=>{ const f=document.getElementById("xap_"+(focus||"")); if(f) setTimeout(()=>{ try{ f.focus(); }catch(e){} },350); }});
+/* ═════ BOG'LANGAN ILOVALAR: kalit bilan ulash ═════
+   • Mo'minning o'z kaliti (server beradi) — Hisob / Vaqt Banki sozlamalariga qo'yiladi, ular Mo'min xulosasini o'qiy oladi.
+   • Har bir ilova uchun: manzil + o'sha ilovaning kaliti → "Ulash" tugmasi <manzil>/api/link/summary ni tekshiradi. */
+const LINK_KEY_RE=/^[A-Z]{2,12}-[A-Z0-9]{5}-[A-Z0-9]{5}-[A-Z0-9]{5}-[A-Z0-9]{5}$/;
+function xLinkStChip(r){
+  const st=r&&r.st;
+  if(st==="ok") return `<span class="xchip sm ok">${xi("check")} Ulangan</span>`;
+  if(st==="bad") return `<span class="xchip sm bad">Kalit noto'g'ri</span>`;
+  if(st==="nosup") return `<span class="xchip sm warn">Ilova hali qo'llamaydi</span>`;
+  if(st==="err") return `<span class="xchip sm warn">Javob yo'q</span>`;
+  return r&&r.key?`<span class="xchip sm">Tekshirilmagan</span>`:`<span class="xchip sm mute">Ulanmagan</span>`;
 }
+function xLinkInfo(r){
+  const sm=r&&r.info; if(!sm||typeof sm!=="object") return "";
+  const parts=Object.keys(sm).slice(0,6).map(k=>`<span class="xchip sm mute">${escd(String(k))}: ${escd(String(sm[k]).slice(0,40))}</span>`).join("");
+  return parts?`<div class="xchips" style="margin:8px 0 0">${parts}</div>`:"";
+}
+function xAppsSheetHTML(){
+  const signed=!!(FB.user&&FB.token), own=XS.linkKey||"";
+  const ownBox=signed
+    ?`<section class="xcard xlk-own"><div class="xch"><h3>${xi("lock")} Mo'minning ulash kaliti</h3></div>
+        <p class="xnote">Bu kalitni Hisob yoki Vaqt Banki sozlamalaridagi «Bog'langan ilovalar»ga qo'ying. Ular Mo'mindan faqat qisqa xulosani (ahd kuni, bugungi natija, streak) o'qiy oladi — yozolmaydi, boshqa ma'lumotni ko'rmaydi.</p>
+        <div class="xlk-key" id="xlkOwn">${own?escd(XS.linkShow?own:own.slice(0,6)+"•••••-•••••-•••••-"+own.slice(-5)):`<span class="xspin"></span> Olinmoqda…`}</div>
+        <div class="xyn2"><button class="xbtn sm" data-act="xLinkShow">${xi("eye")} ${XS.linkShow?"Yashirish":"Ko'rsatish"}</button><button class="xbtn sm pri" data-act="xLinkCopy">${xi("notes")} Nusxalash</button></div>
+        <button class="xlink xlk-rot" data-act="xLinkRotate">${xi("refresh")} Yangi kalit yaratish (eskisi ishlamay qoladi)</button></section>`
+    :`<section class="xcard xlk-own"><div class="xch"><h3>${xi("lock")} Mo'minning ulash kaliti</h3></div><p class="xnote">Kalit olish uchun avval hisobga kiring: Sozlamalar → Hisob va sinxron.</p></section>`;
+  const apps=XAPPS.map(a=>{ const r=xAppRec(a.id);
+    return `<section class="xcard xlk-app"><div class="xch"><h3><span class="xic sm" data-c="${a.c}">${xi(a.ic)}</span> ${escd(a.name)}</h3>${xLinkStChip(r)}</div>
+      <label class="xfld"><input id="xap_${a.id}" value="${escq(r.url||XAPP_DEF[a.id]||"")}" placeholder=" " autocomplete="off" inputmode="url" autocapitalize="off" spellcheck="false"><span>Manzil (https://…)</span></label>
+      <label class="xfld"><input id="xak_${a.id}" value="${escq(r.key||"")}" placeholder=" " autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="40"><span>${escd(a.name)} ulash kaliti</span></label>
+      <button class="xbtn blk sm" data-act="xLinkTest" data-id="${a.id}">${xi("refresh")} Ulash va tekshirish</button>
+      ${r.msg?`<p class="xnote ${r.st==="ok"?"":"bad"}" style="margin-top:8px">${escd(r.msg)}</p>`:""}${xLinkInfo(r)}</section>`; }).join("");
+  return ownBox+`<div class="xsec"><h2>Ilovalarim</h2></div>`+apps+`<p class="xnote" id="xapErr">Yana bo'limidagi «Moliya» va «Vaqt» tugmalari shu manzillarni ochadi.</p>`;
+}
+function xAppsSheet(){
+  xSheet({t:"Bog'langan ilovalar",sub:"Kalit bilan ulash",key:"apps",full:true,html:xAppsSheetHTML(),foot:`<button class="xbtn pri blk" data-act="xAppsSave">Saqlash</button>`});
+  if(FB.user&&FB.token&&!XS.linkKey) api("GET","/api/link/key").then(r=>{ XS.linkKey=r.key; xAppsRefresh(); }).catch(e=>{ const b=document.getElementById("xlkOwn"); if(b) b.textContent=(e&&e.message)||"Kalitni olib bo'lmadi"; });
+}
+function xAppsRefresh(){ if(XS.sheetKey!=="apps") return; xAppsRead(); xSheetBody(xAppsSheetHTML()); }
+/* formadagi qiymatlarni vaqtincha saqlab turish (qayta chizishda yo'qolmasin) */
+function xAppsRead(){
+  const m=Object.assign({},(S.settings&&S.settings.appLinks)||{}), bad=[];
+  XAPPS.forEach(a=>{ const ue=document.getElementById("xap_"+a.id), ke=document.getElementById("xak_"+a.id); if(!ue) return;
+    const r=Object.assign({},xAppRec(a.id)); const n=xAppNorm(ue.value); if(n===null) bad.push(a.name+": manzil noto'g'ri"); else r.url=n||"";
+    const k=String(ke.value||"").trim().toUpperCase(); if(k&&!LINK_KEY_RE.test(k)) bad.push(a.name+": kalit ko'rinishi XXXX-XXXXX-XXXXX-XXXXX-XXXXX bo'lishi kerak"); else { if(k!==(r.key||"")){ r.st=""; r.msg=""; r.info=null; } r.key=k; }
+    m[a.id]=r; });
+  return {m,bad};
+}
+XACT.xLinkShow=()=>{ XS.linkShow=!XS.linkShow; xAppsRefresh(); };
+XACT.xLinkCopy=async()=>{ const k=XS.linkKey; if(!k) return; try{ await navigator.clipboard.writeText(k); toast("Kalit nusxalandi ✓",1500); }catch(e){ XS.linkShow=true; xAppsRefresh(); toast("Kalitni belgilab, qo'lda nusxalang",2200); } };
+XACT.xLinkRotate=()=>{ xAppsRead(); xSheetClose(false,true); setTimeout(()=>xConfirm({t:"Yangi kalit",text:"Eski kalit darhol ishlamay qoladi. Unga ulangan ilovalarga yangi kalitni qayta kiritishingiz kerak bo'ladi.",ok:"Yangilash",tone:"bad",onOk:async()=>{
+  try{ const r=await api("POST","/api/link/key"); XS.linkKey=r.key; XS.linkShow=true; toast("Yangi kalit yaratildi ✓",1600); }catch(e){ toast(escd(e.message||"Bo'lmadi")); }
+  setTimeout(xAppsSheet,340); }}),340); };
+XACT.xLinkTest=async(el)=>{
+  const id=el.dataset.id, {m,bad}=xAppsRead(); const r=m[id];
+  if(bad.length){ const p=document.getElementById("xapErr"); if(p){ p.classList.add("bad"); p.textContent=bad.join(". "); } return; }
+  if(!r.key){ r.st=""; r.msg="Avval o'sha ilovaning ulash kalitini yozing (u ilovaning Sozlamalar → Bog'langan ilovalar bo'limida)."; S.settings.appLinks=m; xSheetBody(xAppsSheetHTML()); return; }
+  el.disabled=true; el.innerHTML=`<span class="xspin"></span> Tekshirilmoqda… (uxlab yotgan bo'lsa ~1 daqiqa)`;
+  const base=(r.url||XAPP_DEF[id]||"").replace(/\/+$/,"");
+  try{
+    const ctl=typeof AbortController!=="undefined"?new AbortController():null; const to=setTimeout(()=>{ try{ ctl&&ctl.abort(); }catch(_){} },75000);
+    const res=await fetch(base+"/api/link/summary",{headers:{"X-Link-Key":r.key},signal:ctl?ctl.signal:undefined}); clearTimeout(to);
+    let j=null; try{ j=await res.json(); }catch(_){}
+    if(res.ok&&j&&j.ok){ r.st="ok"; r.msg="Ulandi ✓ "+(j.name?escd(j.name):""); r.info=j.summary&&typeof j.summary==="object"?j.summary:null; }
+    else if(res.status===401||res.status===403){ r.st="bad"; r.msg="Kalit noto'g'ri — o'sha ilovadan qayta nusxalang."; r.info=null; }
+    else if(res.status===404||!j){ r.st="nosup"; r.msg="Bu ilova kalit bilan ulanishni hali qo'llamaydi. Unga LINK-API.md dagi /api/link/summary qo'shilishi kerak."; r.info=null; }
+    else { r.st="err"; r.msg="Server xatosi: "+res.status; }
+  }catch(e){ r.st="err"; r.msg="Ilovaga ulanib bo'lmadi (internet yo'q, manzil xato yoki ilova bunday so'rovga ruxsat bermagan)."; }
+  r.at=Date.now(); m[id]=r; S.settings.appLinks=m; saveSet();
+  if(XS.sheetKey==="apps") xSheetBody(xAppsSheetHTML());
+};
 XACT.xAppsEdit=()=>xAppsSheet();
-document.addEventListener("input",e=>{ const t=e.target; if(t&&t.id&&t.id.indexOf("xap_")===0){ const p=document.getElementById("xapErr"); if(p&&p.classList.contains("bad")){ p.classList.remove("bad"); p.textContent="Ilovani brauzerda ochib, manzil satridagi havolani nusxalang va shu yerga qo'ying."; } } });
 XACT.xAppsSave=()=>{
-  const out={}, bad=[];
-  XAPPS.forEach(a=>{ const el=document.getElementById("xap_"+a.id); const raw=el?el.value:""; const n=xAppNorm(raw); if(n===null){ bad.push(a.name); } else if(n){ out[a.id]=n; } });
-  if(bad.length){ const p=document.getElementById("xapErr"); if(p){ p.classList.add("bad"); p.textContent=bad.join(", ")+": manzil noto'g'ri. U https:// bilan boshlanadigan havola bo'lishi kerak."; } return; }
-  S.settings.appLinks=out; saveSet();
+  const {m,bad}=xAppsRead();
+  if(bad.length){ const p=document.getElementById("xapErr"); if(p){ p.classList.add("bad"); p.textContent=bad.join(". "); } return; }
+  S.settings.appLinks=m; saveSet();
   xSheetClose(); toast("Saqlandi ✓",1800); xRefresh();
 };
+/* Mo'min xulosasi — boshqa ilovalar kalit bilan o'qiydi (faqat o'zgarganda yoziladi) */
+function xLinkPublish(){
+  try{
+    if(!(FB.user&&FB.token)) return;
+    const ai=ahdInfo(), sc=xScore(); let stk=0; try{ stk=HIST?computeStreak().current:0; }catch(e){}
+    const sm={"Ahd":ai.started?ai.n+"-kun":ai.n+" kun qoldi","Bugungi natija":sc.score+"%","Namoz":sc.sd+"/5","Streak":stk+" kun","Sana":todayKey()};
+    const v=JSON.stringify(sm); if(v===XS.linkPub) return; XS.linkPub=v; Store.set("momin:link:summary",v);
+  }catch(e){}
+}
+setInterval(()=>{ if(!document.hidden) xLinkPublish(); },10*60e3);
+document.addEventListener("visibilitychange",()=>{ if(!document.hidden) setTimeout(xLinkPublish,4000); });
+setTimeout(xLinkPublish,8000);
 
 /* ═════ ULASHISH KARTASI (rasm) — yangi uslub: eski oltin naqsh va burchaklar yo'q ═════
    base.html dagi shareCard() ni almashtiradi (keyin e'lon qilingani ishlaydi). */
@@ -11778,7 +11864,7 @@ const xKV=(k,v)=>`<div class="xst-kv"><span>${k}</span><b>${v}</b></div>`;
 function xStatsHTML(d){
   if(!d) return `<div class="xst-load"><span class="xspin"></span> Serverdan olinmoqda… (uxlab yotgan bo'lsa ~1 daqiqa)</div>`;
   if(d.err) return `<div class="xempty"><span class="xic lg" data-c="rose">${xi("cloud")}</span><b>Olib bo'lmadi</b><p>${escd(d.err)}</p><button class="xbtn sm" data-act="xStatsLoad">Qayta urinish</button></div>`;
-  const mine=`<section class="xcard"><div class="xch"><h3>${xi("user")} Mening ma'lumotlarim</h3></div>${xKV("Bulutdagi hajm",xBytes(d.mine.bytes))}${xKV("Yozuvlar soni",d.mine.rows)}</section>`;
+  const mine=`<section class="xcard"><div class="xch"><h3>${xi("user")} Mening ma'lumotlarim</h3></div>${xKV("Bulutdagi hajm",xBytes(d.mine.bytes))}${xKV("Yozuvlar soni",d.mine.rows)}${d.mine.imgCount?xKV("Rasmlarim (object storage)",xNum(d.mine.imgCount)+" ta · "+xBytes(d.mine.imgBytes)):""}</section>`;
   if(!d.owner) return mine+`<p class="xnote">Server va baza ko'rsatkichlarini faqat ilova egasi ko'radi.</p>`;
   const r=d.render, b=d.db, n=b.neon||{};
   const ren=`<section class="xcard xst"><div class="xch"><h3>${xi("server")} Render · server</h3><span class="xchip sm ${r.onRender?"ok":""}">${r.onRender?"ishlayapti":"mahalliy"}</span></div>
@@ -11800,8 +11886,15 @@ function xStatsHTML(d){
     ${xMeter({t:"Saqlash (baza hajmi)",used:b.sizeBytes,max:b.freeBytes,fmt:xBytes,note:"Bepul reja: 1 GB."})}
     ${xKV("Ma'lumotlar jadvali",xBytes(b.kvBytes))}${xKV("Foydalanuvchilar jadvali",xBytes(b.usersBytes))}
     ${xKV("Foydalanuvchilar",b.users)}${xKV("Yozuvlar (jami)",b.rows.toLocaleString("ru-RU"))}
-    ${xKV("Object storage","yoqilmagan · 0 B")}${neon}</section>`;
-  return ren+nb+mine+`<p class="xnote">Yangilangan: ${new Date(d.time).toLocaleTimeString("uz-UZ",{hour:"2-digit",minute:"2-digit"})}</p>`;
+    ${neon}</section>`;
+  const o=d.storage||{};
+  const os=`<section class="xcard xst"><div class="xch"><h3>${xi("camera")} Neon · object storage (rasmlar)</h3><span class="xchip sm ${o.enabled&&o.ok?"ok":""}">${!o.enabled?"sozlanmagan":o.ok===false?"xato":"ishlayapti"}</span></div>
+    ${o.enabled?`${xMeter({t:"Rasmlar hajmi",used:o.bytes||0,max:o.freeBytes,fmt:xBytes,note:"Bepul reja: loyihaga 5 GB. Bu ilova yuklagan rasmlar hisoblanadi."})}
+      ${xKV("Rasmlar soni",xNum(o.count||0))}${xKV("Bucket",escd(o.bucket||""))}${xKV("Hudud",escd(o.region||""))}
+      ${o.pending?xKV("Bazadan ko'chirilmoqda",xNum(o.pending)+" ta · "+xBytes(o.pendingBytes)):""}${o.moved?xKV("Ko'chirildi (shu ishga tushishda)",xNum(o.moved)+" ta"):""}
+      ${o.error?`<p class="xst-n bad">${escd(o.error)}</p>`:""}`
+    :`<p class="xst-n">${o.error?escd(o.error)+". ":""}Rasmlar hozir bazada (${xBytes(o.pendingBytes||0)}, ${xNum(o.pending||0)} ta). Object storage'ni yoqish uchun Render → Environment ga <b>AWS_ACCESS_KEY_ID</b>, <b>AWS_SECRET_ACCESS_KEY</b>, <b>AWS_ENDPOINT_URL_S3</b>, <b>AWS_REGION</b> va <b>S3_BUCKET</b> qo'shing.</p>`}</section>`;
+  return ren+nb+os+mine+`<p class="xnote">Yangilangan: ${new Date(d.time).toLocaleTimeString("uz-UZ",{hour:"2-digit",minute:"2-digit"})}</p>`;
 }
 function xStatsSheet(){
   xSheet({t:"Server va baza",sub:"Render va Neon ko'rsatkichlari",key:"stats",full:true,html:xStatsHTML(XS.stats||null),
@@ -11852,13 +11945,57 @@ const XIDB=(()=>{
   const tx=(mode,fn)=>open().then(db=>new Promise((res,rej)=>{ const t=db.transaction("kv",mode), q=fn(t.objectStore("kv")); t.oncomplete=()=>res(q?q.result:undefined); t.onerror=()=>rej(t.error); t.onabort=()=>rej(t.error); }));
   return {get:k=>tx("readonly",s=>s.get(k)), set:(k,v)=>tx("readwrite",s=>s.put(v,k)), del:k=>tx("readwrite",s=>s.delete(k)), keys:()=>tx("readonly",s=>s.getAllKeys())};
 })();
+/* ── rasmlar bulutda: object storage (server /api/img). Sozlanmagan bo'lsa — eski usul (oddiy sinxron) ── */
+const XIMGS={off:false};
+const xIsImgKey=k=>{ k=String(k); return k.indexOf(MIMG)===0||k.indexOf("momin:img:")===0; };
+function xImgQ(){ try{ return JSON.parse(localStorage.getItem("momin_imgq")||"[]")||[]; }catch(e){ return []; } }
+function xImgQSet(a){ try{ localStorage.setItem("momin_imgq",JSON.stringify([...new Set(a)].slice(-500))); }catch(e){} }
+async function xImgReq(method,k,body,type){
+  const h={Authorization:"Bearer "+FB.token}; if(type) h["Content-Type"]=type;
+  return fetch(apiBase()+"/api/img?k="+encodeURIComponent(k),{method,headers:h,body});
+}
+/* natija: "ok" | "off" (storage yo'q) | "fail" (keyinroq qayta urinamiz) */
+async function xImgUp(k,v){
+  if(XIMGS.off) return "off"; if(!(FB.connected&&FB.token)) return "fail";
+  try{ const blob=await (await fetch(v)).blob(); const r=await xImgReq("PUT",k,blob,blob.type||"image/jpeg");
+    if(r.status===501){ XIMGS.off=true; return "off"; } return r.ok?"ok":"fail"; }catch(e){ return "fail"; }
+}
+async function xImgDown(k){
+  if(XIMGS.off||!(FB.connected&&FB.token)) return null;
+  try{ const r=await xImgReq("GET",k); if(r.status===501){ XIMGS.off=true; return null; } if(!r.ok) return null;
+    const b=await r.blob(); return await new Promise(res=>{ const fr=new FileReader(); fr.onload=()=>res(String(fr.result||"")); fr.onerror=()=>res(null); fr.readAsDataURL(b); }); }catch(e){ return null; }
+}
+async function xImgPushOne(k){
+  let v=null; try{ v=await XIDB.get(k); }catch(e){}   /* faqat qurilmadagi nusxa: o'chirilgan bo'lsa serverdan qayta tortib olmaymiz */
+  if(!v){ /* o'chirilgan */ if(!XIMGS.off&&FB.connected){ try{ const r=await xImgReq("DELETE",k); if(r.status===501){ XIMGS.off=true; fbPush(k,null); } else if(!r.ok) return false; }catch(e){ return false; } } else fbPush(k,null); return true; }
+  const st=await xImgUp(k,v); if(st==="off"){ fbPush(k,v); return true; } return st==="ok";
+}
+/* kirgandan keyin: serverda yo'q mahalliy rasmlarni yuklash + navbatdagilarni qayta urinish */
+async function xImgSyncAll(remoteKeys){
+  if(!(FB.connected&&FB.token)) return;
+  let have=null;
+  try{ const r=await api("GET","/api/img/list"); if(r&&r.enabled){ XIMGS.off=false; have=new Set(r.keys||[]); } else XIMGS.off=true; }catch(e){ return; }
+  const local=(await Store.list("momin:")).filter(xIsImgKey);
+  if(XIMGS.off){ const up={}; for(const k of local){ if(!(remoteKeys&&remoteKeys.has(k))){ const v=await Store.get(k); if(v) up[k]=v; } } if(Object.keys(up).length){ try{ await api("POST","/api/data",{items:up}); }catch(e){} } return; }
+  const q=new Set(xImgQ()); local.forEach(k=>{ if(!have.has(k)) q.add(k); });
+  const left=[]; for(const k of q){ if(!(await xImgPushOne(k))) left.push(k); }
+  xImgQSet(left);
+}
 (function(){
   if(typeof indexedDB==="undefined") return;
   const o={get:Store.get,set:Store.set,del:Store.del,list:Store.list};
-  const isImg=k=>{ k=String(k); return k.indexOf(MIMG)===0||k.indexOf("momin:img:")===0; };
-  Store.get=async function(k){ if(isImg(k)){ try{ const v=await XIDB.get(k); return v==null?null:v; }catch(e){ return o.get.call(Store,k); } } return o.get.call(Store,k); };
+  const isImg=xIsImgKey;
+  Store.get=async function(k){
+    if(isImg(k)){ let v=null; try{ v=await XIDB.get(k); }catch(e){ return o.get.call(Store,k); }
+      if(v==null){ const d=await xImgDown(k); if(d){ try{ await XIDB.set(k,d); }catch(e){} v=d; } }
+      return v==null?null:v; }
+    return o.get.call(Store,k); };
   Store.set=async function(k,v){
-    if(isImg(k)){ const empty=v==null||v===""; try{ if(empty) await XIDB.del(k); else await XIDB.set(k,v); }catch(e){ if(!empty) return o.set.call(Store,k,v); } try{ fbPush(k,empty?null:v); }catch(e){} return; }
+    if(isImg(k)){ const empty=v==null||v===""; try{ if(empty) await XIDB.del(k); else await XIDB.set(k,v); }catch(e){ if(!empty) return o.set.call(Store,k,v); }
+      if(FB._applying) return;                       /* bulutdan kelgan — qayta yubormaymiz */
+      if(!(FB.connected&&FB.token)){ const q=xImgQ(); q.push(k); xImgQSet(q); return; }
+      xImgPushOne(k).then(ok=>{ if(!ok){ const q=xImgQ(); q.push(k); xImgQSet(q); } });
+      return; }
     return o.set.call(Store,k,v);
   };
   Store.del=async function(k){ if(isImg(k)){ try{ await XIDB.del(k); }catch(e){} } return o.del.call(Store,k); };
