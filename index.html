@@ -2956,6 +2956,26 @@ html body .sheet .sheet-card{width:min(100%,560px)!important;max-height:92vh!imp
 .xdr-s small{font-size:10px;font-weight:700;color:var(--xink3)}
 .xdr-s:active .xic{transform:scale(.9)}
 
+/* muhrlangan qasam */
+.xqs{border:1px solid rgba(233,184,95,.45)!important;background:linear-gradient(160deg,rgba(233,184,95,.10),transparent 70%),var(--xcard)!important}
+.xqs-h{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--xgold)}
+.xqs-h .xi{width:14px;height:14px}
+.xqs-q{margin:10px 0 12px;font:700 17px/1.5 var(--xdisp);color:var(--xink);text-wrap:balance}
+.xqs-m{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:14px;background:var(--xgoldbg);color:var(--xgold)}
+.xqs-m p{margin:0;font-weight:800;font-size:14px;line-height:1.4}
+.xqs-dot{flex:none;display:inline-flex}.xqs-dot .xi{width:22px;height:22px}
+.xqs-f{margin-top:10px;font-size:12px;color:var(--xink3)}
+.xqs-a{margin:8px 0 0;font-size:12.5px;font-style:italic;color:var(--xink2)}
+.xcvk-q{display:block;font-size:13.5px;line-height:1.5;font-style:italic;color:var(--xink);margin:2px 0 1px;text-wrap:pretty}
+.xcvk-lk{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;color:var(--xgold)}
+.xcvk-lk .xi{width:13px;height:13px}
+
+.xqs-xat{margin-top:12px;padding:14px;border-radius:16px;background:var(--xcard2);border:1px solid var(--xline)}
+.xqs-xat b{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:800;letter-spacing:.04em;color:var(--xgold);margin-bottom:8px}
+.xqs-xat b .xi{width:13px;height:13px}
+.xqs-xat p{margin:0 0 8px;font-size:14px;line-height:1.6;color:var(--xink);text-wrap:pretty}
+.xqs-xat p:last-child{margin:0;font-weight:700}
+
 /* ═══ IBODAT: Namoz · Zikr · Qur'on ═══ */
 .xhero.xnight{background:
   url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cpath d='M78 14C52 16 32 38 34 64c2 26 24 44 50 40-22-6-34-26-28-48 5-18 14-32 22-42z' fill='%23fff' fill-opacity='.9'/%3E%3Ccircle cx='96' cy='30' r='2.2' fill='%23fff' fill-opacity='.85'/%3E%3Ccircle cx='108' cy='54' r='1.5' fill='%23fff' fill-opacity='.7'/%3E%3Ccircle cx='86' cy='70' r='1.8' fill='%23fff' fill-opacity='.75'/%3E%3C/svg%3E") no-repeat right 10px top 54px/84px,
@@ -4645,12 +4665,12 @@ const COMMIT_THEMES = {
   rose:  {a:"#F5BCA8", b:"#F0916B", c:"#B85F42", ring:"#CC6F4E", varname:"--rose"}
 };
 const SECONDARY_COMMITMENTS = [
-  {id:"shakarsiz", date:"2026-10-26", title:'Bugun — "shakarsiz" davrim boshlangan kun', theme:"sage",   icon:"cube"},
-  {id:"noent",     date:"2026-10-26", title:'Bugun — musiqa va entertainmentni rad etish ahdim boshlangan kun', theme:"violet", icon:"note"},
-  {id:"iffat",     date:"2026-10-26", title:"Allohga qasamki, bugun zinoni tark etish ahdim boshlangan kun", theme:"teal", icon:"shield"},
-  {id:"nojunk",    date:"2026-10-26", title:"Bugun — junk food yeyishni to'xtatgan kunim", note:"Fri, chips, qoldiq ovqatlar, fast food va hokazolar", theme:"blue", icon:"burger"},
-  {id:"tilim",     date:"2026-10-26", title:"Bugun — yomon so'zlardan tiyilish ahdim boshlangan kun", theme:"ember", icon:"speech"},
-  {id:"tunggi",    date:"2026-10-26", title:"Bugun — har tunlik tunggi tartibga amal qilish ahdim boshlangan kun", note:"Kiyim yuvish, poyabzal kremlash, dush, moliya/vaqt tahlili, budilnik va uyqu — har kecha.", theme:"rose", icon:"moon"}
+  {id:"shakarsiz", date:"2026-11-01", title:'Bugun — "shakarsiz" davrim boshlangan kun', theme:"sage",   icon:"cube"},
+  {id:"noent",     date:"2026-11-01", title:'Bugun — musiqa va entertainmentni rad etish ahdim boshlangan kun', theme:"violet", icon:"note"},
+  {id:"iffat",     date:"2026-11-01", title:"Allohga qasamki, bugun zinoni tark etish ahdim boshlangan kun", theme:"teal", icon:"shield"},
+  {id:"nojunk",    date:"2026-11-01", title:"Bugun — junk food yeyishni to'xtatgan kunim", note:"Fri, chips, qoldiq ovqatlar, fast food va hokazolar", theme:"blue", icon:"burger"},
+  {id:"tilim",     date:"2026-11-01", title:"Bugun — yomon so'zlardan tiyilish ahdim boshlangan kun", theme:"ember", icon:"speech"},
+  {id:"tunggi",    date:"2026-11-01", title:"Bugun — har tunlik tunggi tartibga amal qilish ahdim boshlangan kun", note:"Kiyim yuvish, poyabzal kremlash, dush, moliya/vaqt tahlili, budilnik va uyqu — har kecha.", theme:"rose", icon:"moon"}
 ];
 function commitSealSVG(cfg){
   const t = COMMIT_THEMES[cfg.theme] || COMMIT_THEMES.sage;
@@ -6076,16 +6096,16 @@ function dayNumber(startISO){
   return Math.floor((n - s)/86400000) + 1;
 }
 /* Ahd sanasi mustahkamlangan — o'zgartirib bo'lmaydi */
-const AHD_DATE = "2026-10-26";
-const AHD_PRETTY = "26.10.2026";
-const AHD_SHORT = "26.10.26";
+const AHD_DATE = "2026-11-01";
+const AHD_PRETTY = "01.11.2026";
+const AHD_SHORT = "01.11.26";
 function ahdInfo(){
   const dn = dayNumber(AHD_DATE);          // boshlangan kunda 1
   if(dn >= 1) return {started:true, n:dn, top:"Mo'minning kuni", sub:AHD_SHORT+" dan beri"};
   return {started:false, n:(1-dn), top:"Ahd boshlanadi", sub:"kun qoldi"};
 }
 /* Qasam sanasi — Allohga qasam ichgan kun, mustahkamlangan, o'zgarmaydi */
-const QASAM_DATE = "2026-10-26";
+const QASAM_DATE = "2026-11-01";
 function qasamInfo(){
   const dn = dayNumber(QASAM_DATE);
   return {n:Math.max(1,dn), started:dn>=1};
@@ -8611,7 +8631,7 @@ function xWeekCells(){
 const XCOV_SHORT={shakarsiz:"Shakarsiz",noent:"Musiqasiz",iffat:"Iffat",nojunk:"Junk food",tilim:"Tilim",tunggi:"Tunggi tartib"};
 const XCOV_ICON={shakarsiz:"sugar",noent:"music",iffat:"shield",nojunk:"food",tilim:"speech",tunggi:"moon"};
 const XCOV_WHY={
-  qasam:"Alloh nomi bilan ichilgan qasam — eng og'ir va eng sharafli ahd.",
+  qasam:"Men yigitlik or-nomusimni o'rtaga qo'yib Allohga qasam ichamanki, vaqt-bevaqt zinoga yaqinlashmayman.",
   shakarsiz:"Shakar va shirinliklarsiz yashash — nafsga qarshi kundalik mashq.",
   noent:"Musiqa va entertainment (bekorchi ko'ngilochar)dan voz kechish — vaqt va qalb tozaligi uchun.",
   iffat:"Zinoni va unga yaqinlashtiruvchi har narsani tark etish.",
@@ -9290,6 +9310,7 @@ function xAhdGridHTML(list){
       <span class="xcvk-s">${xCovSeal(c,"g")}</span>
       <span class="xcvk-b"><span class="xcvk-t">${escd(c.id==="qasam"?"Allohga qasam":c.short)}</span>
         <b class="xcvk-n xnum">${c.started?c.n:c.left}<small>${c.started?"-kun":" kun qoldi"}</small></b>
+        ${c.id==="qasam"?`<span class="xcvk-q">«${escd(QASAM_TEXT)}»</span><span class="xcvk-lk">${xi("lock")} Muhrlangan · buzilmaydi</span>`:""}
         ${c.started?`<span class="xcvk-p"><i style="width:${p.pct}%"></i></span><span class="xcvk-m">${p.nx?p.nx+"-kunga "+(p.nx-c.n)+" kun":"Eng katta marra ✦"}</span>`:`<span class="xcvk-m">${escd(xDateShort(c.date))} da boshlanadi</span>`}</span></button>`; }).join("")}</div>`;
 }
 function xWeakCard(){
@@ -9338,7 +9359,7 @@ function xCovSheetBody(id){
       <div class="xcvd-sub">${c.started?"Boshlangan: "+escd(xDateLong(c.date)):escd(xDateLong(c.date))+" da boshlanadi"}</div>
       ${c.started?`<div class="xcvd-pb"><i style="width:${p.pct}%"></i></div><div class="xcvd-m">${p.nx?p.nx+"-kunga "+(p.nx-c.n)+" kun qoldi":"Eng katta marraga yetdingiz ✦"}</div>`:""}
     </div>
-    ${(c.note||c.why)?`<div class="xcard flat xwhy"><p>${escd(c.note||c.why)}</p></div>`:""}
+    ${c.id==="qasam"?xQasamSealHTML():(c.note||c.why)?`<div class="xcard flat xwhy"><p>${escd(c.note||c.why)}</p></div>`:""}
     ${canCheck?`<div class="xcard flat"><div class="xch"><h3>Bugun</h3><span class="xchip ${xCovClean(c)>=7?"ok":"tone"} sm">${xi("flame")} toza: ${xCovClean(c)} kun</span></div>
       <div class="xyn2"><button class="xbtn ok ${tdy==="ok"?"sel":""}" data-act="xCovMark" data-id="${c.id}" data-v="ok">${xi("check")} Saqladim</button><button class="xbtn bad ${tdy==="bad"?"sel":""}" data-act="xCovMark" data-id="${c.id}" data-v="bad">${xi("close")} Buzdim</button></div>
       <div class="xlbl" style="margin-top:14px">So'nggi 14 kun</div>
@@ -9504,6 +9525,21 @@ XACT.dreamDel=(el)=>{
   const item=arr[idx]; S.dreams=arr.filter(x=>x.id!==id); saveDreams(); renderOrzu();
   toast("Orzu o'chirildi",5200,{undo:()=>{ S.dreams.splice(Math.min(idx,S.dreams.length),0,item); saveDreams(); renderOrzu(); }});
 };
+
+/* ═════ Allohga qasam — muhrlangan matn (o'zgartirilmaydi) ═════ */
+const QASAM_TEXT="Men yigitlik or-nomusimni o'rtaga qo'yib Allohga qasam ichamanki, vaqt-bevaqt zinoga yaqinlashmayman.";
+const QASAM_SEAL="Allohga bergan bu qasamimni hech qachon buzmayman.";
+const QASAM_XAT=["Assalomu alaykum, Alloh.","Meni kechir! Men sendan ko'p uzoqlashib ketdim.","Iltimos, bu xatni qiyomat kunida qayta o'qishga ruxsat ber.","Men mana shu kundan boshlab o'zgarishimni yozmoqdaman. Men ko'p harakat qildim, talpindim, izlandim — hammasi besamar ketdi. Shu safar ham harakat qilib, men isbotlamoqchiman: men tark qila olishimni, men nafsimdan ustun kelishimni.","Nasib bo'lsa, shu safar o'shaydi!"];
+function xQasamSealHTML(){
+  return `<div class="xcard flat xqs">
+    <div class="xqs-h">${xi("lock")} Muhrlangan qasam</div>
+    <blockquote class="xqs-q">«${escd(QASAM_TEXT)}»</blockquote>
+    <div class="xqs-m"><span class="xqs-dot">${xi("seal")}</span><p>${escd(QASAM_SEAL)}</p></div>
+    <div class="xqs-xat"><b>${xi("lock")} Allohga xat</b>${QASAM_XAT.map(t=>`<p>${escd(t)}</p>`).join("")}</div>
+    <div class="xqs-f">${escd(xDateLong(QASAM_DATE))} · o'zgartirilmaydi, o'chirilmaydi</div>
+    <p class="xqs-a">«Ahdga vafo qilinglar, albatta ahd (qiyomatda) so'raladi» — Isro, 34</p>
+  </div>`;
+}
 
 /* ═══════════════════════════════════════════════════════════════════════════
    MO'MIN v3 — IBODAT: Namoz · Zikr · Qur'on
@@ -12368,6 +12404,22 @@ const _ktRenderColl=renderColl;
 renderColl=function(key){ if(key==="kutubxona") return renderKutub(); return _ktRenderColl.apply(this,arguments); };
 const _ktLoadAll=loadAll;
 loadAll=async function(){ const r=await _ktLoadAll.apply(this,arguments); S.authors=undefined; return r; };
+
+/* ═════ ALLOHGA QASAM: yangi belgi — hilol + muhr (qulf). Eski sakkiz burchakli yulduz olib tashlandi ═════ */
+XI.seal='<path d="M13.5 3.6A8.6 8.6 0 1 0 15 20.2 7.2 7.2 0 0 1 13.5 3.6z"/><rect x="14.6" y="11.6" width="6.4" height="5.4" rx="1.3"/><path d="M15.9 11.6v-1.5a1.9 1.9 0 0 1 3.8 0v1.5"/>';
+function qasamSealSVG(){
+  const u="qs"+Math.random().toString(36).slice(2,7);
+  return `<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs><radialGradient id="${u}g" cx="35%" cy="28%" r="78%"><stop offset="0%" stop-color="#F7DA9A"/><stop offset="55%" stop-color="#E7B45C"/><stop offset="100%" stop-color="#B07A2E"/></radialGradient></defs>
+    <circle cx="60" cy="60" r="55" fill="none" stroke="#C88A38" stroke-width="2" stroke-dasharray="2.5 4.5" opacity=".6"/>
+    <circle cx="60" cy="60" r="47" fill="url(#${u}g)" stroke="#E7B45C" stroke-width="1.5"/>
+    <circle cx="60" cy="60" r="40.5" fill="none" stroke="#0F1628" stroke-width="1.1" opacity=".35"/>
+    <path d="M60 30a30 30 0 1 0 8.6 58.8A25 25 0 0 1 60 30z" fill="#0F1628" opacity=".9"/>
+    <g fill="none" stroke="#0F1628" stroke-width="3.2" stroke-linecap="round" opacity=".9"><path d="M70.5 60v-5.2a6.5 6.5 0 0 1 13 0V60"/></g>
+    <rect x="66" y="59" width="22" height="18" rx="4" fill="#0F1628" opacity=".9"/>
+    <circle cx="77" cy="66.2" r="2.6" fill="#E7B45C"/><rect x="75.9" y="67.5" width="2.2" height="5" rx="1" fill="#E7B45C"/>
+  </svg>`;
+}
 
 /* ═══ BOOT yordamchilari ═══ */
 function xBoot(){
